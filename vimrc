@@ -1,8 +1,30 @@
-execute pathogen#infect()
 syntax enable
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'Valloric/YouCompleteMe'
+Plug 'rking/ag.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'garyburd/go-explorer'
+Plug 'morhetz/gruvbox'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'StanAngeloff/php.vim'
+Plug 'majutsushi/tagbar'
+Plug 'vim-airline/vim-airline'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'fatih/vim-go'
+Plug 'rhysd/vim-go-impl'
+Plug 'tpope/vim-obsession'
+Plug 'phpfmt/vim-phpfmt'
+Plug 'tpope/vim-surround'
+
+" Add plugins to &runtimepath
+call plug#end()
 
 filetype plugin indent on    " required
 
@@ -102,4 +124,10 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
-let g:go_fmt_command = "goimports"
+"let g:go_fmt_command = "goimports"
+
+let g:phpfmt_on_save = get(g:, 'phpfmt_on_save', 1) " format on save (autocmd)
+let g:phpfmt_php_path = "php"               " Path to PHP
+"let g:phpfmt_prepasses_list = "AutoPreincrement,JointToImplode"
+""let g:phpfmt_passes_list = "ReturnNull"
+let g:phpfmt_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
