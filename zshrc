@@ -89,3 +89,4 @@ export GOPATH=$HOME/Projects/go
 export PATH=$PATH:$HOME/Projects/go/bin
 export PATH="/usr/local/sbin:$PATH"
 #sh ~/.vim/bundle/gruvbox/gruvbox_256palette_osx.sh
+

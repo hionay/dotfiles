@@ -22,6 +22,7 @@ Plug 'rhysd/vim-go-impl'
 Plug 'tpope/vim-obsession'
 Plug 'phpfmt/vim-phpfmt'
 Plug 'tpope/vim-surround'
+Plug 'elzr/vim-json'
 
 " Add plugins to &runtimepath
 call plug#end()
