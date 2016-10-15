@@ -8,7 +8,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'Valloric/YouCompleteMe'
 Plug 'rking/ag.vim'
 Plug 'kien/ctrlp.vim'
-Plug 'garyburd/go-explorer'
 Plug 'morhetz/gruvbox'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
@@ -20,9 +19,10 @@ Plug 'airblade/vim-gitgutter'
 Plug 'fatih/vim-go'
 Plug 'rhysd/vim-go-impl'
 Plug 'tpope/vim-obsession'
-Plug 'phpfmt/vim-phpfmt'
 Plug 'tpope/vim-surround'
 Plug 'elzr/vim-json'
+Plug 'beanworks/vim-phpfmt'
+Plug 'mattn/emmet-vim'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -125,6 +125,7 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+let g:go_auto_sameids = 1
 "let g:go_fmt_command = "goimports"
 
 let g:phpfmt_on_save = get(g:, 'phpfmt_on_save', 1) " format on save (autocmd)
