@@ -23,6 +23,8 @@ Plug 'tpope/vim-surround'
 Plug 'elzr/vim-json'
 Plug 'beanworks/vim-phpfmt'
 Plug 'mattn/emmet-vim'
+Plug 'tpope/vim-dispatch'
+Plug 'christoomey/vim-tmux-navigator'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -69,8 +71,11 @@ set lazyredraw
 set nocursorcolumn
 "set cursorline
 
-"nnoremap <CR> :noh<CR><CR>
+" check one time after 4s of inactivity in normal mode
+set autoread                                                                                                                                                                                    
+au CursorHold * checktime"nnoremap <CR> :noh<CR><CR>
 
+set term=screen-256color
 set t_Co=256
 colorscheme gruvbox
 set background=dark
@@ -125,10 +130,11 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
-let g:go_auto_sameids = 1
+"let g:go_auto_sameids = 1
+let g:go_auto_type_info = 1
 "let g:go_fmt_command = "goimports"
 
-let g:phpfmt_on_save = get(g:, 'phpfmt_on_save', 1) " format on save (autocmd)
+"let g:phpfmt_on_save = get(g:, 'phpfmt_on_save', 0) " format on save (autocmd)
 let g:phpfmt_php_path = "php"               " Path to PHP
 "let g:phpfmt_prepasses_list = "AutoPreincrement,JointToImplode"
 ""let g:phpfmt_passes_list = "ReturnNull"

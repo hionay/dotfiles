@@ -5,7 +5,7 @@ export ZSH=/Users/onay/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="dracula"
+ZSH_THEME="wedisagree"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -84,10 +84,17 @@ export LANG=en_US.UTF-8
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export TERM="xterm-256color"
+
+export EDITOR="vim"
+export USE_EDITOR=$EDITOR
+export VISUAL=$EDITOR
+
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/Projects/go
 export PATH=$PATH:$HOME/Projects/go/bin
 export PATH="/usr/local/sbin:$PATH"
+export PATH=$PATH:$HOME/bin
 #sh ~/.vim/bundle/gruvbox/gruvbox_256palette_osx.sh
 
 # In order for gpg to find gpg-agent, gpg-agent must be running, and there must be an env
