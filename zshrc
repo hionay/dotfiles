@@ -1,10 +1,12 @@
-# Path to your oh-my-zsh installation.
-export ZSH=/Users/onay/.oh-my-zsh
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
+# Path to your oh-my-zsh installation.
+export ZSH=/Users/halil.onay/.oh-my-zsh
+
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="wedisagree"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -49,18 +51,16 @@ ZSH_THEME="wedisagree"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-
-# User configuration
-
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-# export MANPATH="/usr/local/man:$MANPATH"
+plugins=(git tmux)
 
 source $ZSH/oh-my-zsh.sh
 
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
 # You may need to manually set your language environment
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+# export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -73,7 +73,7 @@ export LANG=en_US.UTF-8
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -95,17 +95,5 @@ export GOPATH=$HOME/Projects/go
 export PATH=$PATH:$HOME/Projects/go/bin
 export PATH="/usr/local/sbin:$PATH"
 export PATH=$PATH:$HOME/bin
-#sh ~/.vim/bundle/gruvbox/gruvbox_256palette_osx.sh
 
-# In order for gpg to find gpg-agent, gpg-agent must be running, and there must be an env
-# variable pointing GPG to the gpg-agent socket. This little script, which must be sourced
-# in your shell's init script (ie, .bash_profile, .zshrc, whatever), will either start
-# gpg-agent or set up the GPG_AGENT_INFO variable if it's already running.
-
-# Add the following to your shell init to set up gpg-agent automatically for every shell
-#if [ -f ~/.gnupg/.gpg-agent-info ] && [ -n "$(pgrep gpg-agent)" ]; then
-    #source ~/.gnupg/.gpg-agent-info
-    #export GPG_AGENT_INFO
-#else
-    #eval $(gpg-agent --daemon --write-env-file ~/.gnupg/.gpg-agent-info)
-#fi
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
