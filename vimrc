@@ -26,6 +26,9 @@ Plug 'tpope/vim-dispatch'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'itchyny/lightline.vim'
 Plug 'ervandew/supertab'
+Plug 'Shougo/vimshell.vim'
+Plug 'Shougo/vimproc.vim'
+Plug 'sebdah/vim-delve'
 
 " Add plugins to &runtimepath
 call plug#end()
