@@ -5,7 +5,6 @@ filetype off                  " required
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'Valloric/YouCompleteMe'
 Plug 'rking/ag.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'morhetz/gruvbox'
@@ -29,6 +28,7 @@ Plug 'ervandew/supertab'
 Plug 'Shougo/vimshell.vim'
 Plug 'Shougo/vimproc.vim'
 Plug 'sebdah/vim-delve'
+Plug 'stamblerre/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 
 " Add plugins to &runtimepath
 call plug#end()
