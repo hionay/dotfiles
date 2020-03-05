@@ -28,8 +28,17 @@ Plug 'ervandew/supertab'
 Plug 'Shougo/vimshell.vim'
 Plug 'Shougo/vimproc.vim'
 Plug 'sebdah/vim-delve'
-Plug 'stamblerre/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
-
+Plug 'wakatime/vim-wakatime'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+"
 " Add plugins to &runtimepath
 call plug#end()
 
@@ -128,7 +137,7 @@ au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <Leader>e <Plug>(go-rename)
-set completeopt-=preview
+" set completeopt-=preview
 let g:acp_enableAtStartup = 0
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -145,6 +154,17 @@ let g:go_auto_type_info = 1
 set statusline+=%#goStatuslineColor#
 set statusline+=%{go#statusline#Show()}
 set statusline+=%*
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+let g:UltiSnipsEditSplit="vertical"
+
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
+
 
 "let g:phpfmt_on_save = get(g:, 'phpfmt_on_save', 0) " format on save (autocmd)
 let g:phpfmt_php_path = "php"               " Path to PHP

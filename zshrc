@@ -90,11 +90,13 @@ export EDITOR="vim"
 export USE_EDITOR=$EDITOR
 export VISUAL=$EDITOR
 
-export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/Projects/go
 export PATH=$PATH:$HOME/Projects/go/bin
 export PATH="/usr/local/sbin:$PATH"
 export PATH=$PATH:$HOME/bin
+alias python='python3'
+alias pip='pip3'
+#export GO111MODULE=on
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
