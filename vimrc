@@ -1,295 +1,334 @@
-syntax enable
-
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
 call plug#begin('~/.vim/plugged')
 
-Plug 'rking/ag.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'arthurxavierx/vim-caser'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'dense-analysis/ale'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'elzr/vim-json'
+Plug 'ervandew/supertab'
+Plug 'fatih/vim-go'
+Plug 'godlygeek/tabular'
+Plug 'honza/vim-snippets'
+Plug 'itchyny/lightline.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'jwalton512/vim-blade'
+Plug 'luochen1990/rainbow'
+Plug 'majutsushi/tagbar'
+Plug 'milch/vim-fastlane'
+Plug 'mileszs/ack.vim'
 Plug 'morhetz/gruvbox'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'plasticboy/vim-markdown'
+Plug 'rhysd/vim-go-impl'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-tmux-clipboard'
+Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'StanAngeloff/php.vim'
-Plug 'majutsushi/tagbar'
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-Plug 'fatih/vim-go'
-Plug 'rhysd/vim-go-impl'
-Plug 'tpope/vim-obsession'
-Plug 'tpope/vim-surround'
-Plug 'elzr/vim-json'
-Plug 'beanworks/vim-phpfmt'
-Plug 'mattn/emmet-vim'
-Plug 'tpope/vim-dispatch'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'itchyny/lightline.vim'
-Plug 'ervandew/supertab'
-Plug 'Shougo/vimshell.vim'
-Plug 'Shougo/vimproc.vim'
-Plug 'sebdah/vim-delve'
-Plug 'wakatime/vim-wakatime'
+Plug 'scrooloose/syntastic'
+Plug 'shawncplus/phpcomplete.vim'
+Plug 'Shougo/deoplete.nvim'
 Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-"
-" Add plugins to &runtimepath
+Plug 'soramugi/auto-ctags.vim'
+Plug 'StanAngeloff/php.vim'
+Plug 'stephpy/vim-php-cs-fixer'
+Plug 'stephpy/vim-yaml'
+Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-obsession'
+Plug 'tyru/open-browser.vim'
+Plug 'tyru/open-browser-github.vim'
+Plug 'wakatime/vim-wakatime'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
 call plug#end()
 
-filetype plugin indent on    " required
+set ttyfast
+filetype off
+filetype plugin indent on
 
-"
-" Settings
-"
-set noerrorbells                " No beeps
-set number                      " Show line numbers
-set backspace=indent,eol,start  " Makes backspace key more powerful.
-set showcmd                     " Show me what I'm typing
-set showmode                    " Show current mode.
-
-set noswapfile                  " Don't use swapfile
-set nobackup            	    " Don't create annoying backup files
-set splitright                  " Split vertical windows right to the current windows
-set splitbelow                  " Split horizontal windows below to the current windows
 set encoding=utf-8              " Set default encoding to UTF-8
-set autowrite                   " Automatically save before :next, :make etc.
 set autoread                    " Automatically reread changed files without asking me anything
-set laststatus=2
-set hidden
+set autoindent
+set backspace=indent,eol,start  " Makes backspace key more powerful.
+set incsearch                   " Shows the match while typing
+set hlsearch                    " Highlight found searches
 
-set fileformats=unix,dos,mac    " Prefer Unix over Windows over OS 9 formats
-
-""http://stackoverflow.com/questions/20186975/vim-mac-how-to-copy-to-clipboard-without-pbcopy
+set linespace=12
+set tabstop=4
+set smarttab
+set tags=tags
+set softtabstop=4
+set expandtab
+set shiftwidth=4
+set shiftround
+set number
+set mouse=a
+set noerrorbells             " No beeps
+set ruler                    " Show cursor position
 set clipboard^=unnamed
 set clipboard^=unnamedplus
+set showcmd                  " Show me what I'm typing
+set noswapfile               " Don't use swapfile
+set nobackup                 " Don't create annoying backup files
+set splitright               " Split vertical windows right to the current windows
+set splitbelow               " Split horizontal windows below to the current windows
+set autowrite                " Automatically save before :next, :make etc.
+set hidden
+set fileformats=unix,dos,mac " Prefer Unix over Windows over OS 9 formats
+set noshowmatch              " Do not show matching brackets by flickering
+set noshowmode               " We show the mode with airline or lightline
+set ignorecase               " Search case insensitive...
+set smartcase                " ... but not it begins with upper case
+set completeopt=menu,menuone
+set nocursorcolumn           " speed up syntax highlighting
+set nocursorline
+set updatetime=300
+set pumheight=10             " Completion window max size
+set conceallevel=2           " Concealed text is completely hidden
 
-set noshowmatch                 " Do not show matching brackets by flickering
-set nocursorcolumn
-set noshowmode                  " We show the mode with airlien or lightline
-set incsearch                   " Shows the match while typing
-"set hlsearch                    " Highlight found searches
-set ignorecase                  " Search case insensitive...
-set smartcase                   " ... but not when search pattern contains upper case characters
-""set ttyfast
-""set ttymouse=xterm2
-""set ttyscroll=3
-set lazyredraw          	   
+set shortmess+=c   " Shut off completion messages
+set belloff+=ctrlg " If Vim beeps during completion
 
-set nojoinspaces
-set nocursorcolumn
-"set cursorline
+set lazyredraw
+set laststatus=2
 
-" check one time after 4s of inactivity in normal mode
-set autoread                                                                                                                                                                                    
-au CursorHold * checktime"nnoremap <CR> :noh<CR><CR>
+" increase max memory to show syntax highlighting for large files
+set maxmempattern=20000
 
-set term=screen-256color
-set t_Co=256
-colorscheme gruvbox
-set background=dark
-let g:gruvbox_contrast_dark = "hard"
+syntax enable
 
-let g:tagbar_type_go = {  
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-\ }
-nmap <F8> :TagbarToggle<CR>
-nmap <C-n> :NERDTreeToggle<CR>
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
-au FileType go nmap <Leader>ds <Plug>(go-def-split)
-au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-au FileType go nmap <Leader>dt <Plug>(go-def-tab)
-au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
-au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
-au FileType go nmap <Leader>s <Plug>(go-implements)
-au FileType go nmap <Leader>i <Plug>(go-info)
-au FileType go nmap <Leader>e <Plug>(go-rename)
-" set completeopt-=preview
-let g:acp_enableAtStartup = 0
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_types = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-"let g:go_auto_sameids = 1
-let g:go_auto_type_info = 1
-"let g:go_fmt_command = "goimports"
-
-" go command status (requires vim-go)
-set statusline+=%#goStatuslineColor#
-set statusline+=%{go#statusline#Show()}
-set statusline+=%*
-
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-let g:UltiSnipsEditSplit="vertical"
-
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
-
-
-"let g:phpfmt_on_save = get(g:, 'phpfmt_on_save', 0) " format on save (autocmd)
-let g:phpfmt_php_path = "php"               " Path to PHP
-"let g:phpfmt_prepasses_list = "AutoPreincrement,JointToImplode"
-""let g:phpfmt_passes_list = "ReturnNull"
-let g:phpfmt_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
+" lightline
 let g:lightline = {
       \ 'colorscheme': 'wombat',
-      \ }
-" ==================== Lightline ====================
-"
-let g:lightline = {
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste'],
-      \             [ 'fugitive', 'filename', 'modified', 'ctrlpmark', 'go'] ],
-      \   'right': [ [ 'lineinfo' ], 
-      \              [ 'percent' ], 
-      \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
-      \ },
-      \ 'component': {
-      \   'go': '%#goStatuslineColor#%{LightLineGo()}',
-      \ },
-      \ 'component_visible_condition': {
-      \   'go': '(exists("*go#statusline#Show") && ""!=go#statusline#Show())'
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
       \ },
       \ 'component_function': {
-      \   'lineinfo': 'LightLineInfo',
-      \   'percent': 'LightLinePercent',
-      \   'modified': 'LightLineModified',
-      \   'filename': 'LightLineFilename',
-      \   'fileformat': 'LightLineFileformat',
-      \   'filetype': 'LightLineFiletype',
-      \   'fileencoding': 'LightLineFileencoding',
-      \   'mode': 'LightLineMode',
-      \   'fugitive': 'LightLineFugitive',
-      \   'ctrlpmark': 'CtrlPMark',
+	  \   'readonly': 'LightlineReadonly',
+	  \   'modified': 'LightlineModified',
+      \   'gitbranch': 'LightlineFugitive'
       \ },
+	  \ 'separator': { 'left': '', 'right': '' },
+	  \ 'subseparator': { 'left': '', 'right': '' }
       \ }
 
-function! LightLineModified()
-  if &filetype == "help"
-    return ""
-  elseif &modified
-    return "+"
-  elseif &modifiable
-    return ""
-  else
-    return ""
-  endif
+function! LightlineReadonly()
+    return &readonly ? '' : ''
 endfunction
-
-function! LightLineFileformat()
-  return winwidth(0) > 70 ? &fileformat : ''
+function! LightlineModified()
+	return &modifiable && &modified ? '+' : ''
 endfunction
-
-function! LightLineFiletype()
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
-endfunction
-
-function! LightLineFileencoding()
-  return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
-endfunction
-
-function! LightLineInfo()
-  return winwidth(0) > 60 ? printf("%3d:%-2d", line('.'), col('.')) : ''
-endfunction
-
-function! LightLinePercent()
-  return &ft =~? 'vimfiler' ? '' : (100 * line('.') / line('$')) . '%'
-endfunction
-
-function! LightLineFugitive()
-  return exists('*fugitive#head') ? fugitive#head() : ''
-endfunction
-
-function! LightLineGo()
-  return exists('*go#statusline#Show') ? go#statusline#Show() : ''
-endfunction
-
-function! LightLineMode()
-  let fname = expand('%:t')
-  return fname == 'ControlP' ? 'CtrlP' :
-        \ &ft == 'vimfiler' ? 'VimFiler' :
-        \ winwidth(0) > 60 ? lightline#mode() : ''
-endfunction
-
-function! LightLineFilename()
-  let fname = expand('%:t')
-  if mode() == 't'
+function! LightlineFugitive()
+    if exists('*FugitiveHead')
+        let branch = FugitiveHead()
+        return branch !=# '' ? ' '.branch : ''
+    endif
     return ''
+endfunction
+
+" color
+let g:gruvbox_contrast_dark = "hard"
+set background=dark
+colorscheme gruvbox
+
+let mapleader = ","
+let g:mapleader = ","
+let g:EasyMotion_leader_key = '<Leader>'
+
+" Mappings
+nmap :sp :rightbelow sp<cr>
+nmap vs :vsplit<cr>
+nmap sp :split<cr>
+nmap :bp :BufSurfBack<cr>
+nmap :bn :BufSurfForward<cr>
+nmap <C-n> :NERDTreeToggle<cr>
+nmap <leader>w :w!<cr>
+nmap <leader>q :q<cr>
+nmap <leader>qa :qa<cr>
+nmap <leader>q! :q!<cr>
+nmap <leader>gca :Gcommit -a -S<cr>
+nmap <leader>gp :Gpush<cr>
+nmap <leader>gl :Gpull<cr>
+nmap <leader>gst :Gstatus<cr>
+nmap <leader>c :!composer install <cr>
+nmap cn :cn<cr>
+
+nnoremap j gj
+nnoremap k gk
+imap jj <esc>
+
+" Auto change directory to match current file ,cd
+nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
+
+" Remove search highlight
+" nnoremap <leader><space> :nohlsearch<CR>
+function! s:clear_highlight()
+      let @/ = ""
+        call go#guru#ClearSameIds()
+endfunction
+nnoremap <silent> <leader><space> :<C-u>call <SID>clear_highlight()<CR>
+
+" do not continue comments
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" NERDTree
+let NERDTreeShowHidden=1
+
+" Tagbar
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_type_php  = {
+            \ 'ctagstype' : 'php',
+            \ 'kinds'     : [
+            \ 'i:interfaces',
+            \ 'c:classes',
+            \ 'd:constant definitions',
+            \ 'f:functions',
+            \ 'j:javascript functions:1'
+            \ ]
+            \ }
+
+" Gitgutter
+let g:gitgutter_max_signs = 2000
+let g:ragtag_global_maps = 1
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 2
+"let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_html_checkers=['']
+"let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+let g:syntastic_aggregate_errors = 1
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exec = './node_modules/.bin/eslint'
+"let g:syntastic_php_phpcs_exec = './vendor/bin/phpcs'
+"let g:syntastic_php_phpmd_exec = './vendor/bin/phpmd'
+"let g:syntastic_php_phpcs_args = '--standard=phpcs-ruleset.xml'
+"let g:syntastic_php_phpmd_post_args = 'phpmd-ruleset.xml'
+
+" ==================== vim-go ====================
+let g:go_fmt_fail_silently = 1
+let g:go_fmt_command = "goimports"
+let g:go_debug_windows = {
+      \ 'vars':  'leftabove 35vnew',
+      \ 'stack': 'botright 10new',
+\ }
+
+let g:go_test_prepend_name = 1
+let g:go_list_type = "quickfix"
+let g:go_auto_type_info = 0
+let g:go_auto_sameids = 0
+
+let g:go_null_module_warning = 0
+let g:go_echo_command_info = 1
+
+let g:go_autodetect_gopath = 1
+let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+let g:go_metalinter_enabled = ['vet', 'golint']
+
+let g:go_info_mode = 'gopls'
+let g:go_rename_command='gopls'
+let g:go_gopls_complete_unimported = 1
+let g:go_implements_mode='gopls'
+let g:go_diagnostics_enabled = 1
+let g:go_doc_popup_window = 1
+
+let g:go_highlight_space_tab_error = 0
+let g:go_highlight_array_whitespace_error = 0
+let g:go_highlight_trailing_whitespace_error = 0
+let g:go_highlight_extra_types = 0
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_types = 0
+let g:go_highlight_operators = 1
+let g:go_highlight_format_strings = 0
+let g:go_highlight_function_calls = 0
+let g:go_gocode_propose_source = 1
+
+let g:go_modifytags_transform = 'camelcase'
+let g:go_fold_enable = []
+
+nmap <C-g> :GoDecls<cr>
+imap <C-g> <esc>:<C-u>GoDecls<cr>
+
+
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
   endif
-
-  return fname == 'ControlP' ? g:lightline.ctrlp_item :
-        \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
-        \ ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
-        \ ('' != fname ? fname : '[No Name]')
 endfunction
 
-function! LightLineReadonly()
-  return &ft !~? 'help' && &readonly ? 'RO' : ''
-endfunction
+augroup go
+  autocmd!
 
-function! CtrlPMark()
-  if expand('%:t') =~ 'ControlP'
-    call lightline#link('iR'[g:lightline.ctrlp_regex])
-    return lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item
-          \ , g:lightline.ctrlp_next], 0)
-  else
-    return ''
-  endif
-endfunction
+  autocmd FileType go nmap <silent> <Leader>v <Plug>(go-def-vertical)
+  autocmd FileType go nmap <silent> <Leader>s <Plug>(go-def-split)
+  autocmd FileType go nmap <silent> <Leader>d <Plug>(go-def-tab)
 
-let g:ctrlp_status_func = {
-      \ 'main': 'CtrlPStatusFunc_1',
-      \ 'prog': 'CtrlPStatusFunc_2',
-      \ }
+  autocmd FileType go nmap <silent> <Leader>x <Plug>(go-doc-vertical)
 
-function! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked)
-  let g:lightline.ctrlp_regex = a:regex
-  let g:lightline.ctrlp_prev = a:prev
-  let g:lightline.ctrlp_item = a:item
-  let g:lightline.ctrlp_next = a:next
-  return lightline#statusline(0)
-endfunction
+  autocmd FileType go nmap <silent> <Leader>i <Plug>(go-info)
+  autocmd FileType go nmap <silent> <Leader>l <Plug>(go-metalinter)
 
-function! CtrlPStatusFunc_2(str)
-  return lightline#statusline(0)
-endfunction
+  autocmd FileType go nmap <silent> <leader>b :<C-u>call <SID>build_go_files()<CR>
+  autocmd FileType go nmap <silent> <leader>t  <Plug>(go-test)
+  autocmd FileType go nmap <silent> <leader>r  <Plug>(go-run)
+  autocmd FileType go nmap <silent> <leader>e  <Plug>(go-install)
+
+  autocmd FileType go nmap <silent> <Leader>c <Plug>(go-coverage-toggle)
+
+  " I like these more!
+  autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+  autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+  autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+  autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+augroup END
+
+" Vim-Blade
+autocmd BufNewFile,BufRead *.blade.php set ft=html | set ft=phtml | set ft=blade " Fix blade auto-indent"
+
+" Vim-Markdown
+let g:vim_markdown_folding_disabled = 1 "markdown folding
+
+"php-cs-fixer
+let g:php_cs_fixer_php_path = 'php'
+let g:php_cs_fixer_rules = "@PSR2,no_unused_imports"          " options: --rules (default:@PSR2)
+autocmd BufWritePost *.php call PhpCsFixerFixFile()
+
+" Ale
+let g:ale_linters_explicit = 1
+let g:ale_linters = {
+    \'javascript': ['eslint'],
+    \'php': ['langserver', 'phpcs', 'phpmd', 'psalm']
+    \}
+let g:ale_php_phpcs_executable = "./vendor/bin/phpcs"
+let g:ale_php_phpmd_executable = './vendor/bin/phpmd'
+let g:ale_php_phpmd_ruleset = 'phpmd.xml'
+let g:ale_set_highlights = 0
+let g:ale_echo_msg_format = '%linter%: %s'
+let g:ale_fix_on_save = 1
+let g:ale_fixers = {
+    \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+    \   'javascript': ['eslint'],
+    \}
+
+" Auto Ctags
+let g:auto_ctags = 1
+let g:auto_ctags_tags_args = ['--tag-relative=yes', '--recursive=yes', '--sort=yes', '--languages=php,go,javascript,python']
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
