@@ -4,7 +4,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'arthurxavierx/vim-caser'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ConradIrwin/vim-bracketed-paste'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dense-analysis/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'ekalinin/Dockerfile.vim'
@@ -20,17 +19,18 @@ Plug 'luochen1990/rainbow'
 Plug 'majutsushi/tagbar'
 Plug 'milch/vim-fastlane'
 Plug 'mileszs/ack.vim'
-Plug 'morhetz/gruvbox'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'plasticboy/vim-markdown'
 Plug 'rhysd/vim-go-impl'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'sainnhe/gruvbox-material'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'shawncplus/phpcomplete.vim'
+Plug 'sheerun/vim-polyglot'
 Plug 'Shougo/deoplete.nvim'
 Plug 'SirVer/ultisnips'
 Plug 'soramugi/auto-ctags.vim'
@@ -48,9 +48,12 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 call plug#end()
 
+set nocompatible      " We're running Vim, not Vi!
 set ttyfast
-filetype off
-filetype plugin indent on
+syntax on             " Enable syntax highlighting
+filetype on           " Enable filetype detection
+filetype indent on    " Enable filetype-specific indenting
+filetype plugin on    " Enable filetype-specific plugins
 
 set encoding=utf-8              " Set default encoding to UTF-8
 set autoread                    " Automatically reread changed files without asking me anything
@@ -95,28 +98,54 @@ set conceallevel=2           " Concealed text is completely hidden
 set shortmess+=c   " Shut off completion messages
 set belloff+=ctrlg " If Vim beeps during completion
 
-set lazyredraw
 set laststatus=2
+set lazyredraw
 
 " increase max memory to show syntax highlighting for large files
 set maxmempattern=20000
 
+set timeout " Do time out on mappings and others
+set timeoutlen=2000 " Wait {num} ms before timing out a mapping
+
+" When you’re pressing Escape to leave insert mode in the terminal, it will by
+" default take a second or another keystroke to leave insert mode completely
+" and update the statusline. This fixes that. I got this from:
+" https://powerline.readthedocs.org/en/latest/tipstricks.html#vim
+if !has('gui_running')
+    set ttimeoutlen=10
+    augroup FastEscape
+        autocmd!
+        au InsertEnter * set timeoutlen=0
+        au InsertLeave * set timeoutlen=1000
+    augroup END
+endif
+
 syntax enable
+
+" color
+if has('termguicolors')
+  set termguicolors
+endif
+set background=dark
+let g:gruvbox_material_background = 'hard'
+let g:gruvbox_material_transparent_background = 0
+let g:gruvbox_material_diagnostic_line_highlight = 1
+colorscheme gruvbox-material
 
 " lightline
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'gruvbox_material',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
       \ },
       \ 'component_function': {
-	  \   'readonly': 'LightlineReadonly',
-	  \   'modified': 'LightlineModified',
+      \   'readonly': 'LightlineReadonly',
+      \   'modified': 'LightlineModified',
       \   'gitbranch': 'LightlineFugitive'
       \ },
-	  \ 'separator': { 'left': '', 'right': '' },
-	  \ 'subseparator': { 'left': '', 'right': '' }
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
       \ }
 
 function! LightlineReadonly()
@@ -133,21 +162,13 @@ function! LightlineFugitive()
     return ''
 endfunction
 
-" color
-let g:gruvbox_contrast_dark = "hard"
-set background=dark
-colorscheme gruvbox
-
 let mapleader = ","
 let g:mapleader = ","
 let g:EasyMotion_leader_key = '<Leader>'
 
 " Mappings
-nmap :sp :rightbelow sp<cr>
 nmap vs :vsplit<cr>
 nmap sp :split<cr>
-nmap :bp :BufSurfBack<cr>
-nmap :bn :BufSurfForward<cr>
 nmap <C-n> :NERDTreeToggle<cr>
 nmap <leader>w :w!<cr>
 nmap <leader>q :q<cr>
@@ -204,17 +225,11 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 2
-"let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_html_checkers=['']
-"let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exec = './node_modules/.bin/eslint'
-"let g:syntastic_php_phpcs_exec = './vendor/bin/phpcs'
-"let g:syntastic_php_phpmd_exec = './vendor/bin/phpmd'
-"let g:syntastic_php_phpcs_args = '--standard=phpcs-ruleset.xml'
-"let g:syntastic_php_phpmd_post_args = 'phpmd-ruleset.xml'
 
 " ==================== vim-go ====================
 let g:go_fmt_fail_silently = 1
@@ -332,3 +347,7 @@ let g:auto_ctags_tags_args = ['--tag-relative=yes', '--recursive=yes', '--sort=y
 " Deoplete
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
+
+" add yaml stuffs
+"au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
