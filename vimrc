@@ -3,7 +3,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'arthurxavierx/vim-caser'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'dense-analysis/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'ekalinin/Dockerfile.vim'
@@ -25,6 +24,7 @@ Plug 'rhysd/vim-go-impl'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'rust-lang/rust.vim'
 Plug 'sainnhe/gruvbox-material'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
@@ -43,6 +43,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
 Plug 'tyru/open-browser.vim'
 Plug 'tyru/open-browser-github.vim'
+Plug 'uarun/vim-protobuf'
 Plug 'wakatime/vim-wakatime'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
@@ -343,6 +344,7 @@ let g:ale_fixers = {
 " Auto Ctags
 let g:auto_ctags = 1
 let g:auto_ctags_tags_args = ['--tag-relative=yes', '--recursive=yes', '--sort=yes', '--languages=php,go,javascript,python']
+let g:auto_ctags_set_tags_option = 1
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
@@ -351,3 +353,6 @@ call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
 " add yaml stuffs
 "au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+" rust
+let g:rustfmt_autosave = 1
