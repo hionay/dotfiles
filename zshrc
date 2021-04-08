@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -8,7 +15,7 @@ export ZSH="/Users/halil/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="spaceship"
+#ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -110,22 +117,32 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH=$PATH:$HOME/bin
 export PATH="$PATH:/usr/local/opt/mysql-client/bin"
 
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+export LANG="en_US.UTF-8"
+export LC_COLLATE="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+export LC_MESSAGES="en_US.UTF-8"
+export LC_MONETARY="en_US.UTF-8"
+export LC_NUMERIC="en_US.UTF-8"
+export LC_TIME="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
 
+# Aliases
 alias python='python3'
 alias pip='pip3'
-alias bu="brew update && brew upgrade && brew cask upgrade && brew cleanup -s && brew doctor"
+alias bu="brew update && brew upgrade && brew upgrade --cask && brew cleanup -s && brew doctor"
 alias du="du -sh * | sort -h"
 alias duh='du -sh -t 1M * .[^.]* 2> /dev/null | sort -h'
 alias php='/usr/local/bin/php'
+alias vim='nvim'
+alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
+alias zshrc="vim ~/.zshrc && reload"
+alias vimrc="vim ~/.config/nvim/init.vim"
+alias tmuxrc="vim ~/.tmux.conf && tmux source-file ~/.tmux.conf"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
-
-zplug denysdovhan/spaceship-zsh-theme, use:spaceship.zsh, from:github, as:theme
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -137,3 +154,7 @@ fi
 
 # Then, source plugins and add commands to $PATH
 # zplug load --verbose<F29>
+source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
