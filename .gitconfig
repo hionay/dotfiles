@@ -1,48 +1,45 @@
 [user]
-	name = Halil ibrahim Onay
-	email = wildgnx@gmail.com
+    name = Halil ibrahim Onay
+    email = wildgnx@gmail.com
     signingkey = 825CA8925C7F390F
 
 [gpg]
-	program = gpg
+    program = gpg
 
 [core]
-	pager = delta
-	editor = vim
-	excludesfile = /Users/halil/.gitignore_global
+    pager = delta
+    editor = vim
+    excludesfile = /Users/halil/.gitignore_global
 
 [interactive]
-	diffFilter = delta --color-only --width 100
+    diffFilter = delta --color-only --width 100
 
 [diff]
-	colorMoved = default
+    colorMoved = default
 
 [delta]
-	features = line-numbers decorations
-	whitespace-error-style = 22 reverse
+    features = line-numbers decorations
+    whitespace-error-style = 22 reverse
 
 [delta "decorations"]
-	commit-decoration-style = bold yellow box ul
-	file-style = bold yellow ul
-	file-decoration-style = none
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
 
 [commit]
-	gpgsign = true
+    gpgsign = true
 
 [sequence]
-	editor = interactive-rebase-tool
+    editor = interactive-rebase-tool
 
 [pull]
-	ff = only
+    ff = only
 
 [init]
-	defaultBranch = main
+    defaultBranch = main
 
 [credential]
-	helper = osxkeychain
-
-[url "git@github.com:"]
-	pushInsteadOf = https://github.com/
+    helper = osxkeychain
 
 [log]
     date = iso-local
