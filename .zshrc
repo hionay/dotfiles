@@ -32,6 +32,8 @@ export LC_NUMERIC="en_US.UTF-8"
 export LC_TIME="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
+export GPG_TTY=$TTY
+
 # Aliases
 alias python='python3'
 alias pip='pip3'
@@ -68,3 +70,4 @@ fi
 source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+export PATH="/usr/local/opt/openjdk/bin:$PATH"

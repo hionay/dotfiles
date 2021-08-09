@@ -3,8 +3,8 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'arthurxavierx/vim-caser'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'dense-analysis/ale'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'edkolev/tmuxline.vim'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'elzr/vim-json'
 Plug 'ervandew/supertab'
@@ -13,6 +13,7 @@ Plug 'godlygeek/tabular'
 Plug 'honza/vim-snippets'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/gv.vim'
 Plug 'jwalton512/vim-blade'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'luochen1990/rainbow'
@@ -25,6 +26,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'rhysd/vim-go-impl'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'rust-lang/rust.vim'
+Plug 'ryanoasis/vim-devicons'
 Plug 'sainnhe/gruvbox-material'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
@@ -130,9 +132,12 @@ endif
 syntax enable
 
 " color
-if has('termguicolors')
+if exists('+termguicolors')
+  let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
+
 set background=dark
 let g:gruvbox_material_background = 'hard'
 let g:gruvbox_material_transparent_background = 0
@@ -329,23 +334,6 @@ let g:vim_markdown_folding_disabled = 1 "markdown folding
 let g:php_cs_fixer_php_path = 'php'
 let g:php_cs_fixer_rules = "@PSR2,no_unused_imports"          " options: --rules (default:@PSR2)
 autocmd BufWritePost *.php call PhpCsFixerFixFile()
-
-" Ale
-let g:ale_linters_explicit = 1
-let g:ale_linters = {
-    \'javascript': ['eslint'],
-    \'php': ['langserver', 'phpcs', 'phpmd', 'psalm']
-    \}
-let g:ale_php_phpcs_executable = "./vendor/bin/phpcs"
-let g:ale_php_phpmd_executable = './vendor/bin/phpmd'
-let g:ale_php_phpmd_ruleset = 'phpmd.xml'
-let g:ale_set_highlights = 0
-let g:ale_echo_msg_format = '%linter%: %s'
-let g:ale_fix_on_save = 1
-let g:ale_fixers = {
-    \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-    \   'javascript': ['eslint'],
-    \}
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
