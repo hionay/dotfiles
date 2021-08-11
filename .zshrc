@@ -2,9 +2,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export ZSH="/Users/halil/.oh-my-zsh"
+export ZSH="/Users/hio/.oh-my-zsh"
 
-#ZSH_THEME="robbyrussell"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(git)
 
@@ -32,7 +32,7 @@ export LC_NUMERIC="en_US.UTF-8"
 export LC_TIME="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
-export GPG_TTY=$TTY
+export GPG_TTY=$(tty)
 
 # Aliases
 alias python='python3'
@@ -55,8 +55,6 @@ alias myip='curl http://ifconfig.me/ip'
 alias now='date +"%T"'
 alias path='echo -e ${PATH//:/\\n}'
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
@@ -67,7 +65,5 @@ if ! zplug check --verbose; then
     fi
 fi
 
-source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
-
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-export PATH="/usr/local/opt/openjdk/bin:$PATH"
