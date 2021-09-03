@@ -18,7 +18,7 @@ brew "python@3.9"
 brew "mitmproxy"
 brew "mosh"
 brew "neofetch"
-brew "neovim"
+brew "neovim", args: ["HEAD"]
 brew "onefetch"
 brew "openconnect"
 brew "pinentry-mac"
@@ -48,6 +48,7 @@ cask "handbrake"
 cask "iina"
 cask "latest"
 cask "mac2imgur"
+cask "microsoft-teams"
 cask "mos"
 cask "oversight"
 cask "paw"
@@ -62,6 +63,3 @@ cask "transmission"
 cask "tunnelblick"
 cask "tuxera-ntfs"
 cask "zoom"
-
-mas "Bear", id: 1091189122
-mas "GSE SMART IPTV", id: 1293083751
