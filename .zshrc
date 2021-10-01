@@ -54,6 +54,7 @@ alias tmuxrc="vim ~/.tmux.conf && tmux source-file ~/.tmux.conf"
 alias myip='curl http://ifconfig.me/ip'
 alias now='date +"%T"'
 alias path='echo -e ${PATH//:/\\n}'
+alias gitpullall="find . -type d -depth 1 -exec git --git-dir={}/.git --work-tree=$PWD/{} pull --all \;"
 
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh

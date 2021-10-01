@@ -1,6 +1,7 @@
 call plug#begin(stdpath('data') . '/plugged')
 
 Plug 'airblade/vim-gitgutter'
+Plug 'ap/vim-css-color'
 Plug 'arthurxavierx/vim-caser'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'editorconfig/editorconfig-vim'
@@ -8,7 +9,7 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'elzr/vim-json'
 Plug 'ervandew/supertab'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'godlygeek/tabular'
 Plug 'honza/vim-snippets'
 Plug 'itchyny/lightline.vim'
@@ -22,9 +23,13 @@ Plug 'mhinz/vim-startify'
 Plug 'milch/vim-fastlane'
 Plug 'mileszs/ack.vim'
 Plug 'mustache/vim-mustache-handlebars'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'plasticboy/vim-markdown'
 Plug 'rhysd/vim-go-impl'
 Plug 'roxma/vim-tmux-clipboard'
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'rust-lang/rust.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'sainnhe/gruvbox-material'
@@ -99,7 +104,7 @@ set ignorecase               " Search case insensitive...
 set smartcase                " ... but not it begins with upper case
 set completeopt=menu,menuone
 set nocursorcolumn           " speed up syntax highlighting
-set nocursorline
+set cursorline
 set updatetime=300
 set pumheight=10             " Completion window max size
 set conceallevel=2           " Concealed text is completely hidden
@@ -282,7 +287,8 @@ let g:go_highlight_function_calls = 0
 let g:go_gocode_propose_source = 1
 
 let g:go_modifytags_transform = 'camelcase'
-let g:go_fold_enable = []
+"let g:go_fold_enable = []
+let g:go_fold_enable = ['import']
 
 nmap <C-g> :GoDecls<cr>
 imap <C-g> <esc>:<C-u>GoDecls<cr>
@@ -348,3 +354,15 @@ let g:rustfmt_autosave = 1
 
 " rainbow
 let g:rainbow_active = 1
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" Using Lua functions
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
