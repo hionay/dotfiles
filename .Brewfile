@@ -2,7 +2,6 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/core"
-
 brew "ack"
 brew "aria2"
 brew "ctags"
@@ -33,8 +32,6 @@ brew "tmux"
 brew "youtube-dl"
 brew "zplug"
 brew "zsh"
-
-# Desktop apps
 cask "1password"
 cask "alacritty"
 cask "authy"
@@ -72,3 +69,7 @@ cask "transmission"
 cask "tunnelblick"
 cask "tuxera-ntfs"
 cask "zoom"
+mas "Bear", id: 1091189122
+mas "GSE SMART IPTV", id: 1293083751
+mas "Microsoft Remote Desktop", id: 1295203466
+mas "The Unarchiver", id: 425424353
