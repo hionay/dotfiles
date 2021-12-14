@@ -37,7 +37,7 @@ export GPG_TTY=$(tty)
 # Aliases
 alias python='python3'
 alias pip='pip3'
-alias bu="brew update && brew upgrade && brew upgrade --cask && brew cleanup -s && brew doctor"
+alias bu="brew update && brew upgrade && brew upgrade --cask && brew cleanup -s && brew autoremove && brew doctor"
 alias du="du -sh * | sort -h"
 alias duh='du -sh -t 1M * .[^.]* 2> /dev/null | sort -h'
 alias php='/usr/local/bin/php'
@@ -55,6 +55,13 @@ alias myip='curl http://ifconfig.me/ip'
 alias now='date +"%T"'
 alias path='echo -e ${PATH//:/\\n}'
 alias gitpullall="find . -type d -depth 1 -exec git --git-dir={}/.git --work-tree=$PWD/{} pull --all \;"
+
+op-clip-Bulutistan() {
+    eval $(op signin my)
+    item_totp=$(op get totp Bulutistan)
+    item_password=$(op get item Bulutistan | jq -r '.details.fields[] | select(.designation=="password").value')
+    echo -n $(echo "${item_password}${item_totp}") | pbcopy
+}
 
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh

@@ -1,7 +1,6 @@
 call plug#begin(stdpath('data') . '/plugged')
 
 Plug 'airblade/vim-gitgutter'
-Plug 'ap/vim-css-color'
 Plug 'arthurxavierx/vim-caser'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'editorconfig/editorconfig-vim'
@@ -12,10 +11,10 @@ Plug 'ervandew/supertab'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'godlygeek/tabular'
 Plug 'honza/vim-snippets'
-Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/gv.vim'
 Plug 'jwalton512/vim-blade'
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'luochen1990/rainbow'
 Plug 'majutsushi/tagbar'
@@ -23,10 +22,13 @@ Plug 'mhinz/vim-startify'
 Plug 'milch/vim-fastlane'
 Plug 'mileszs/ack.vim'
 Plug 'mustache/vim-mustache-handlebars'
+Plug 'norcalli/nvim-colorizer.lua'
 Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'plasticboy/vim-markdown'
+Plug 'rhysd/git-messenger.vim'
 Plug 'rhysd/vim-go-impl'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
@@ -46,6 +48,7 @@ Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-rhubarb'
 Plug 'tyru/open-browser-github.vim'
 Plug 'tyru/open-browser.vim'
 Plug 'uarun/vim-protobuf'
@@ -149,35 +152,40 @@ let g:gruvbox_material_transparent_background = 0
 let g:gruvbox_material_diagnostic_line_highlight = 1
 colorscheme gruvbox-material
 
-" lightline
-let g:lightline = {
-      \ 'colorscheme': 'gruvbox_material',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'readonly': 'LightlineReadonly',
-      \   'modified': 'LightlineModified',
-      \   'gitbranch': 'LightlineFugitive'
-      \ },
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '', 'right': '' }
-      \ }
+lua << END
+require'lualine'.setup {
+  options = {
+    icons_enabled = true,
+    theme = 'gruvbox-material',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {},
+    always_divide_middle = true,
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff',
+                  {'diagnostics', sources={'nvim_diagnostic', 'coc'}}},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  extensions = {}
+}
 
-function! LightlineReadonly()
-    return &readonly ? '' : ''
-endfunction
-function! LightlineModified()
-	return &modifiable && &modified ? '+' : ''
-endfunction
-function! LightlineFugitive()
-    if exists('*FugitiveHead')
-        let branch = FugitiveHead()
-        return branch !=# '' ? ' '.branch : ''
-    endif
-    return ''
-endfunction
+require 'colorizer'.setup()
+END
+
 
 let mapleader = ","
 let g:mapleader = ","
@@ -366,3 +374,7 @@ nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+
+" git messenger
+" let g:git_messenger_floating_win_opts = { 'border': 'single' }
+" let g:git_messenger_popup_content_margins = v:false
