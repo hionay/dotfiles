@@ -63,6 +63,12 @@ window:
   #     - buttonless: Title bar, transparent background and no title bar buttons
   decorations: buttonless
 
+  # Background opacity
+  #
+  # Window opacity as a floating point number from `0.0` to `1.0`.
+  # The value `0.0` is completely transparent and `1.0` is opaque.
+  opacity: 0.95
+
   # Startup Mode (changes require restart)
   #
   # Values for `startup_mode`:
@@ -93,12 +99,6 @@ window:
   # and `light`. Set this to `None` to use the default theme variant.
   #gtk_theme_variant: None
 
-# Background opacity
-#
-# Window opacity as a floating point number from `0.0` to `1.0`.
-# The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.95
-
 scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
@@ -117,9 +117,8 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
+    #family: monospace
     family: Hack Nerd Font
-    #family: Iosevka Nerd Font
-    #family: CaskaydiaCove Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -130,9 +129,8 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
+    #family: monospace
     family: Hack Nerd Font
-    #family: Iosevka Nerd Font
-    #family: CaskaydiaCove Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
     #style: Bold
@@ -143,9 +141,8 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
+    #family: monospace
     family: Hack Nerd Font
-    #family: Iosevka Nerd Font
-    #family: CaskaydiaCove Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
     #style: Italic
@@ -156,9 +153,8 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
+    #family: monospace
     family: Hack Nerd Font
-    #family: Iosevka Nerd Font
-    #family: CaskaydiaCove Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
     #style: Bold Italic
@@ -281,26 +277,26 @@ colors:
   #  background: CellForeground
 
   # Normal colors
-  normal:
-    black:   '#282828'
-    red:     '#cc241d'
-    green:   '#98971a'
-    yellow:  '#d79921'
-    blue:    '#458588'
-    magenta: '#b16286'
-    cyan:    '#689d6a'
-    white:   '#a89984'
+  #normal:
+  #  black:   '#1d1f21'
+  #  red:     '#cc6666'
+  #  green:   '#b5bd68'
+  #  yellow:  '#f0c674'
+  #  blue:    '#81a2be'
+  #  magenta: '#b294bb'
+  #  cyan:    '#8abeb7'
+  #  white:   '#c5c8c6'
 
   # Bright colors
-  bright:
-    black: '#928374'
-    red: '#fb4934'
-    green: '#b8bb26'
-    yellow: '#fabd2f'
-    blue: '#83a598'
-    magenta: '#d3869b'
-    cyan: '#8ec07c'
-    white: '#ebdbb2'
+  #bright:
+  #  black:   '#666666'
+  #  red:     '#d54e53'
+  #  green:   '#b9ca4a'
+  #  yellow:  '#e7c547'
+  #  blue:    '#7aa6da'
+  #  magenta: '#c397d8'
+  #  cyan:    '#70c0b1'
+  #  white:   '#eaeaea'
 
   # Dim colors
   #
@@ -336,7 +332,7 @@ colors:
 # Bell
 #
 # The bell is rung every time the BEL control character is received.
-bell:
+#bell:
   # Visual Bell Animation
   #
   # Animation effect for flashing the screen when the visual bell is rung.
@@ -352,11 +348,11 @@ bell:
   #   - EaseOutExpo
   #   - EaseOutCirc
   #   - Linear
-  animation: EaseOutExpo
+  #animation: EaseOutExpo
 
   # Duration of the visual bell flash in milliseconds. A `duration` of `0` will
   # disable the visual bell animation.
-  duration: 0
+  #duration: 0
 
   # Visual bell animation color.
   #color: '#ffffff'
@@ -374,24 +370,24 @@ bell:
   #
   #command: None
 
-selection:
+#selection:
   # This string contains all characters that are used as separators for
   # "semantic words" in Alacritty.
-  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+  #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
 
   # When set to `true`, selected text will be copied to the primary clipboard.
   #save_to_clipboard: false
 
-cursor:
+#cursor:
   # Cursor style
-  style:
+  #style:
     # Cursor shape
     #
     # Values for `shape`:
     #   - ▇ Block
     #   - _ Underline
     #   - | Beam
-    shape: Block
+    #shape: Block
 
     # Cursor blinking state
     #
@@ -400,7 +396,7 @@ cursor:
     #   - Off: Disable blinking by default
     #   - On: Enable blinking by default
     #   - Always: Force the cursor to always blink
-    blinking: Off
+    #blinking: Off
 
   # Vi mode cursor style
   #
@@ -415,14 +411,14 @@ cursor:
 
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
-  unfocused_hollow: true
+  #unfocused_hollow: true
 
   # Thickness of the cursor relative to the cell width as floating point number
   # from `0.0` to `1.0`.
   #thickness: 0.15
 
 # Live config reload (changes require restart)
-live_config_reload: true
+#live_config_reload: true
 
 # Shell
 #
@@ -448,17 +444,20 @@ shell:
 # Send ESC (\x1b) before characters when alt is pressed.
 alt_send_esc: true
 
-mouse:
+# Offer IPC using `alacritty msg` (unix only)
+#ipc_socket: true
+
+#mouse:
   # Click settings
   #
   # The `double_click` and `triple_click` settings control the time
   # alacritty should wait for accepting multiple clicks as one double
   # or triple click.
-  double_click: { threshold: 300 }
-  triple_click: { threshold: 300 }
+  #double_click: { threshold: 300 }
+  #triple_click: { threshold: 300 }
 
   # If this is `true`, the cursor is temporarily hidden when typing.
-  hide_when_typing: false
+  #hide_when_typing: false
 
 # Regex hints
 #
@@ -532,9 +531,10 @@ mouse:
 # And optionally:
 #
 # - `mods` (see key bindings)
-mouse_bindings:
-#  - { mouse: Right,             action: ExpandSelection }
-  - { mouse: Middle, mode: ~Vi, action: PasteSelection  }
+#mouse_bindings:
+#  - { mouse: Right,                 action: ExpandSelection }
+#  - { mouse: Right,  mods: Control, action: ExpandSelection }
+#  - { mouse: Middle, mode: ~Vi,     action: PasteSelection  }
 
 # Key bindings
 #
@@ -603,6 +603,8 @@ mouse_bindings:
 #   - ToggleFullscreen
 #   - SpawnNewInstance
 #       Spawn a new instance of Alacritty.
+#   - CreateNewWindow
+#       Create a new Alacritty window from the current process.
 #   - ClearLogNotice
 #       Clear Alacritty's UI warning and error notice.
 #   - ClearSelection
