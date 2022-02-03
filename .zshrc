@@ -37,7 +37,7 @@ export GPG_TTY=$(tty)
 # Aliases
 alias python='python3'
 alias pip='pip3'
-alias bu="brew update && brew upgrade && brew upgrade --cask && brew cleanup -s && brew autoremove && brew doctor"
+alias bu="brew update && brew upgrade && brew upgrade --greedy && brew cleanup -s && brew autoremove && brew doctor"
 alias du="du -sh * | sort -h"
 alias duh='du -sh -t 1M * .[^.]* 2> /dev/null | sort -h'
 alias php='/usr/local/bin/php'
