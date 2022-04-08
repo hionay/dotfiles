@@ -9,6 +9,7 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'elzr/vim-json'
 Plug 'ervandew/supertab'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'folke/todo-comments.nvim'
 Plug 'godlygeek/tabular'
 Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
@@ -152,39 +153,40 @@ let g:gruvbox_material_transparent_background = 0
 let g:gruvbox_material_diagnostic_line_highlight = 1
 colorscheme gruvbox-material
 
-lua << END
-require'lualine'.setup {
-  options = {
-    icons_enabled = true,
-    theme = 'gruvbox-material',
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
-    disabled_filetypes = {},
-    always_divide_middle = true,
-  },
-  sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff',
-                  {'diagnostics', sources={'nvim_diagnostic', 'coc'}}},
-    lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
-    lualine_y = {},
-    lualine_z = {}
-  },
-  tabline = {},
-  extensions = {}
-}
+lua << EOF
+  require'lualine'.setup {
+    options = {
+      icons_enabled = true,
+      theme = 'gruvbox-material',
+      component_separators = { left = '', right = ''},
+      section_separators = { left = '', right = ''},
+      disabled_filetypes = {},
+      always_divide_middle = true,
+    },
+    sections = {
+      lualine_a = {'mode'},
+      lualine_b = {'branch', 'diff',
+                    {'diagnostics', sources={'nvim_diagnostic', 'coc'}}},
+      lualine_c = {'filename'},
+      lualine_x = {'encoding', 'fileformat', 'filetype'},
+      lualine_y = {'progress'},
+      lualine_z = {'location'}
+    },
+    inactive_sections = {
+      lualine_a = {},
+      lualine_b = {},
+      lualine_c = {'filename'},
+      lualine_x = {'location'},
+      lualine_y = {},
+      lualine_z = {}
+    },
+    tabline = {},
+    extensions = {}
+  }
 
-require 'colorizer'.setup()
-END
+  require 'colorizer'.setup()
+  require("todo-comments").setup()
+EOF
 
 
 let mapleader = ","
@@ -258,7 +260,7 @@ let g:syntastic_javascript_eslint_exec = './node_modules/.bin/eslint'
 
 " ==================== vim-go ====================
 let g:go_fmt_fail_silently = 1
-let g:go_fmt_command = "goimports"
+let g:go_fmt_command = "gopls"
 let g:go_debug_windows = {
       \ 'vars':  'leftabove 35vnew',
       \ 'stack': 'botright 10new',
@@ -279,6 +281,7 @@ let g:go_metalinter_enabled = ['vet', 'golint']
 let g:go_info_mode = 'gopls'
 let g:go_rename_command='gopls'
 let g:go_gopls_complete_unimported = 1
+let g:go_gopls_gofumpt = 1
 let g:go_implements_mode='gopls'
 let g:go_diagnostics_enabled = 1
 let g:go_doc_popup_window = 1
@@ -368,12 +371,6 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-
-" Using Lua functions
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 " git messenger
 " let g:git_messenger_floating_win_opts = { 'border': 'single' }
