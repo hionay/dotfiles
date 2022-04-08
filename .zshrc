@@ -57,21 +57,11 @@ alias path='echo -e ${PATH//:/\\n}'
 alias gitpullall="find . -type d -depth 1 -exec git --git-dir={}/.git --work-tree=$PWD/{} pull --all \;"
 
 op-clip-Bulutistan() {
-    eval $(op signin my)
-    item_totp=$(op get totp Bulutistan)
-    item_password=$(op get item Bulutistan | jq -r '.details.fields[] | select(.designation=="password").value')
+    eval $(op signin --account my)
+    item_totp=$(op item get Bulutistan --field type=otp --format json | jq -r .totp)
+    item_password=$(op item get Bulutistan --field type=concealed --format json | jq -r .value)
     echo -n $(echo "${item_password}${item_totp}") | pbcopy
 }
-
-export ZPLUG_HOME=/usr/local/opt/zplug
-source $ZPLUG_HOME/init.zsh
-
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
