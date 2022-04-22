@@ -6,7 +6,7 @@ export ZSH="/Users/hio/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-plugins=(git)
+plugins=(git colored-man-pages golang tmux)
 
 source $ZSH/oh-my-zsh.sh
 
