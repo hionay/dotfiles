@@ -3,6 +3,12 @@
     email = wildgnx@gmail.com
     signingkey = 825CA8925C7F390F
 
+[commit]
+    gpgsign = true
+
+[includeIf "gitdir:~/Projects/binalyze/"]
+    path = ~/Projects/binalyze/.gitconfig
+
 [gpg]
     program = gpg
 
@@ -35,9 +41,6 @@
     line-numbers-minus-style = 124
     line-numbers-plus-style = 28
 
-[commit]
-    gpgsign = true
-
 [sequence]
     editor = interactive-rebase-tool
 
@@ -55,9 +58,3 @@
 
 [hub]
     protocol = https
-
-[filter "lfs"]
-    clean = git-lfs clean -- %f
-    smudge = git-lfs smudge -- %f
-    process = git-lfs filter-process
-    required = true

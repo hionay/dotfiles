@@ -6,22 +6,34 @@ export ZSH="/Users/hio/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-plugins=(git colored-man-pages golang tmux)
+plugins=(
+    1password
+    aliases
+    brew
+    docker
+    gh
+    git
+    colored-man-pages
+    golang
+    sudo
+)
 
 source $ZSH/oh-my-zsh.sh
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 KEYTIMEOUT=1
 export TERM="xterm-256color"
 
-export EDITOR="vim"
+export EDITOR="nvim"
 export USE_EDITOR=$EDITOR
 export VISUAL=$EDITOR
 
+export GOROOT="/usr/local/go"
 export GOPATH=$HOME/Projects/go
-export PATH=$PATH:$HOME/Projects/go/bin
 export PATH="/usr/local/sbin:$PATH"
 export PATH=$PATH:$HOME/bin
-export PATH="$PATH:/usr/local/opt/mysql-client/bin"
+export PATH="$PATH:$GOPATH/bin"
 
 export LANG="en_US.UTF-8"
 export LC_COLLATE="en_US.UTF-8"
