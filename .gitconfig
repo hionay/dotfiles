@@ -1,3 +1,6 @@
+[user]
+	name = Halil ibrahim Onay
+	email = hionay@gmail.com
 [core]
 	editor = nvim
 [init]
@@ -16,6 +19,3 @@
 	ff = only
 [commit]
 	verbose = true
-[user]
-	name = Halil ibrahim Onay
-	email = hionay@gmail.com
