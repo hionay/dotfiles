@@ -16,3 +16,6 @@
 	ff = only
 [commit]
 	verbose = true
+[user]
+	name = Halil ibrahim Onay
+	email = hionay@gmail.com
