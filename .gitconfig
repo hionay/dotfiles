@@ -1,60 +1,18 @@
-[user]
-    name = Halil ibrahim Onay
-    email = wildgnx@gmail.com
-    signingkey = 825CA8925C7F390F
-
-[commit]
-    gpgsign = true
-
-[includeIf "gitdir:~/Projects/binalyze/"]
-    path = ~/Projects/binalyze/.gitconfig
-
-[gpg]
-    program = gpg
-
 [core]
-    pager = delta
-    editor = vim
-    excludesfile = /Users/hio/.gitignore_global
-
-[interactive]
-    diffFilter = delta --color-only --width 100
-
-[diff]
-    colorMoved = default
-
-[delta]
-    features = side-by-side line-numbers decorations
-    syntax-theme = Dracula
-    plus-style = syntax "#003800"
-    minus-style = syntax "#3f0001"
-
-[delta "decorations"]
-    commit-decoration-style = bold yellow box ul
-    file-style = bold yellow ul
-    file-decoration-style = none
-    hunk-header-decoration-style = cyan box ul
-
-[delta "line-numbers"]
-    line-numbers-left-style = cyan
-    line-numbers-right-style = cyan
-    line-numbers-minus-style = 124
-    line-numbers-plus-style = 28
-
-[sequence]
-    editor = interactive-rebase-tool
-
-[pull]
-    ff = only
-
+	editor = nvim
 [init]
-    defaultBranch = main
-
-[credential]
-    helper = osxkeychain
-
-[log]
-    date = iso-local
-
-[hub]
-    protocol = https
+	defaultBranch = main
+[color]
+  ui = auto
+[blame]
+	coloring = highlightRecent
+[rerere]
+	enabled = true
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[pull]
+	ff = only
+[commit]
+	verbose = true
