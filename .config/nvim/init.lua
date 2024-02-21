@@ -318,5 +318,14 @@ require("lazy").setup({
     setup = function ()
       vim.cmd([[packadd wakatime/vim-wakatime]])
     end
+  },
+  {
+    "olexsmir/gopher.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "mfussenegger/nvim-dap"
+    },
+    opts = {}
   }
 })
