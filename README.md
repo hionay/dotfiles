@@ -29,5 +29,5 @@ then use GNU stow to symlink the dotfiles to your home directory:
 
 ```shell
 cd ~/dotfiles
-stow .
+stow */
 ```
