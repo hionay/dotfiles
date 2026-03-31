@@ -52,10 +52,6 @@
       "rev": "75c4228882ae4883b11bfce9b8383e637eb44192",
       "src": "https://github.com/nvim-neotest/neotest-vim-test"
     },
-    "nui.nvim": {
-      "rev": "de740991c12411b663994b2860f1a4fd0937c130",
-      "src": "https://github.com/MunifTanjim/nui.nvim"
-    },
     "nvim-dap": {
       "rev": "4f5deb110d9ff8994d96c21df95e2271d11214f9",
       "src": "https://github.com/mfussenegger/nvim-dap"
