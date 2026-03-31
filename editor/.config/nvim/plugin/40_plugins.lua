@@ -86,9 +86,16 @@ now_if_args(function()
       table.insert(filetypes, ft)
     end
   end
+
+  local ts_indent_langs = { "php" }
+
   local ts_start = function(ev)
     vim.treesitter.start(ev.buf)
+    if vim.tbl_contains(ts_indent_langs, vim.bo[ev.buf].filetype) then
+      vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end
   end
+
   Config.new_autocmd("FileType", filetypes, ts_start, "Start tree-sitter")
 end)
 
@@ -153,21 +160,21 @@ later(function()
       go = { "goimports", "gofumpt" },
       typescript = { "prettierd" },
       javascript = { "prettierd" },
-      php = { "php_cs_fixer" },
+      php = { "phpcbf" },
       yaml = { "yq" },
     },
     format_on_save = {
-      timeout_ms = 500,
+      timeout_ms = 1000,
       lsp_format = "fallback",
     },
     formatters = {
-      php_cs_fixer = {
+      phpcbf = {
         command = function()
-          local local_bin = vim.fn.getcwd() .. "/vendor/bin/php-cs-fixer"
+          local local_bin = vim.fn.getcwd() .. "/vendor/bin/phpcbf"
           if vim.fn.executable(local_bin) == 1 then
             return local_bin
           end
-          return "php-cs-fixer"
+          return "phpcbf"
         end,
       },
     },

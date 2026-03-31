@@ -280,3 +280,21 @@ vim.api.nvim_create_user_command("GoOS", function()
     },
   })
 end, {})
+
+vim.api.nvim_create_user_command("PackUpdate", function()
+  vim.pack.update()
+end, {})
+
+later(function()
+  add({ "https://github.com/mfussenegger/nvim-lint" })
+
+  require("lint").linters_by_ft = {
+    php = { "phpstan", "phpcs" },
+  }
+
+  vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost" }, {
+    callback = function()
+      require("lint").try_lint()
+    end,
+  })
+end)
