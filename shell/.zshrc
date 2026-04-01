@@ -144,8 +144,8 @@ PATH="$HOME/go/bin:$HOME/.local/bin:/usr/local/go/bin:$PATH"
 
 export PATH
 
-EDITOR="nvim"
-export EDITOR
+export EDITOR="nvim"
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # setting for gup command (auto generate)
 fpath=(~/.zsh/completion $fpath)
