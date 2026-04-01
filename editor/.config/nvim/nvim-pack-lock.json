@@ -25,7 +25,7 @@
       "src": "https://github.com/rebelot/kanagawa.nvim"
     },
     "mini.nvim": {
-      "rev": "af5f75c9ce572a4d1f0c77d6fb4ea764d16c1b3c",
+      "rev": "3923662bf3d6ca49a9503f8d7196ea0450983e6a",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "mini.pick": {
@@ -37,7 +37,7 @@
       "src": "https://github.com/NeogitOrg/neogit"
     },
     "neotest": {
-      "rev": "72bc8f1ec62a590fb47368c81f89610e0f353e28",
+      "rev": "127c2289c25f84d12947a75f04f4649a447e3be0",
       "src": "https://github.com/nvim-neotest/neotest"
     },
     "neotest-golang": {
@@ -73,7 +73,7 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "16812abf0e8d8175155f26143a8504e8253e92b0",
+      "rev": "8e2084bf5e40c79c1f42210a6ef96a0a4793a763",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
