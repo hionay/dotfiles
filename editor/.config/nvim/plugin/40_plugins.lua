@@ -160,7 +160,7 @@ later(function()
       go = { "goimports", "gofumpt" },
       typescript = { "prettierd" },
       javascript = { "prettierd" },
-      php = { "phpcbf" },
+      php = { "php_cs_fixer" },
       yaml = { "yq" },
       json = { "jq" },
     },
@@ -169,13 +169,13 @@ later(function()
       lsp_format = "fallback",
     },
     formatters = {
-      phpcbf = {
+      php_cs_fixer = {
         command = function()
-          local local_bin = vim.fn.getcwd() .. "/vendor/bin/phpcbf"
+          local local_bin = vim.fn.getcwd() .. "/vendor/bin/php-cs-fixer"
           if vim.fn.executable(local_bin) == 1 then
             return local_bin
           end
-          return "phpcbf"
+          return "php-cs-fixer"
         end,
       },
     },
