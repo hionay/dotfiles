@@ -168,17 +168,6 @@ later(function()
       timeout_ms = 1000,
       lsp_format = "fallback",
     },
-    formatters = {
-      php_cs_fixer = {
-        command = function()
-          local local_bin = vim.fn.getcwd() .. "/vendor/bin/php-cs-fixer"
-          if vim.fn.executable(local_bin) == 1 then
-            return local_bin
-          end
-          return "php-cs-fixer"
-        end,
-      },
-    },
   })
 end)
 
