@@ -33,11 +33,11 @@
       "src": "https://github.com/nvim-mini/mini.pick"
     },
     "neogit": {
-      "rev": "4681c1fdac1b730592ae195576e87406f7255750",
+      "rev": "5a7fca171e3ad07380745d573d791e95268b8f3f",
       "src": "https://github.com/NeogitOrg/neogit"
     },
     "neotest": {
-      "rev": "127c2289c25f84d12947a75f04f4649a447e3be0",
+      "rev": "fd0b7986dd0ae04e38ec7dc0c78a432e3820839c",
       "src": "https://github.com/nvim-neotest/neotest"
     },
     "neotest-golang": {
@@ -85,7 +85,7 @@
       "src": "https://github.com/alexghergh/nvim-tmux-navigation"
     },
     "nvim-treesitter": {
-      "rev": "7caec274fd19c12b55902a5b795100d21531391f",
+      "rev": "c82bf96f0a773d85304feeb695e1e23b2207ac35",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-textobjects": {

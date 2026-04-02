@@ -162,6 +162,7 @@ later(function()
       javascript = { "prettierd" },
       php = { "phpcbf" },
       yaml = { "yq" },
+      json = { "jq" },
     },
     format_on_save = {
       timeout_ms = 1000,
