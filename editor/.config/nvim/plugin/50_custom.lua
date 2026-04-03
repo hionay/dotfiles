@@ -248,7 +248,7 @@ local function set_goos(goos)
     vim.env.GOOS = goos
     vim.notify("GOOS set to " .. goos)
   end
-  vim.cmd("LspRestart gopls")
+  vim.cmd("lsp restart gopls")
 end
 
 vim.api.nvim_create_user_command("GoOS", function()
