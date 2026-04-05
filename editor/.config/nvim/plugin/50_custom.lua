@@ -11,7 +11,8 @@ now(function()
   add({ "https://github.com/rebelot/kanagawa.nvim" })
 
   require("kanagawa").setup({
-    -- transparent = true,
+    compile = true,
+    transparent = true,
     colors = {
       theme = {
         all = {
@@ -36,6 +37,11 @@ now(function()
       light = "lotus",
     },
   })
+
+  if vim.fn.has("mac") == 1 then
+    vim.fn.system("defaults read -g AppleInterfaceStyle")
+    vim.o.background = vim.v.shell_error ~= 0 and "light" or "dark"
+  end
 
   vim.cmd("color kanagawa")
 end)
