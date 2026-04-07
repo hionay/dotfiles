@@ -163,6 +163,7 @@ later(function()
       php = { "php_cs_fixer" },
       yaml = { "yq" },
       json = { "jq" },
+      dockerfile = { "dockerfmt" },
     },
     format_on_save = {
       timeout_ms = 1000,

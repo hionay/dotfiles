@@ -41,7 +41,7 @@
       "src": "https://github.com/nvim-neotest/neotest"
     },
     "neotest-golang": {
-      "rev": "58d07a76d714f8f768bbe27711b06d41ca237728",
+      "rev": "48634bebbfa1fe63ed50f170916112c538d8e70d",
       "src": "https://github.com/fredrikaverpil/neotest-golang"
     },
     "neotest-plenary": {
@@ -53,7 +53,7 @@
       "src": "https://github.com/nvim-neotest/neotest-vim-test"
     },
     "nvim-dap": {
-      "rev": "4f5deb110d9ff8994d96c21df95e2271d11214f9",
+      "rev": "45a69eba683a2c448dd9ecfc4de89511f0646b5f",
       "src": "https://github.com/mfussenegger/nvim-dap"
     },
     "nvim-dap-go": {
@@ -73,7 +73,7 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "a776085e04f7b15d0b59fae2244df07d98360ab4",
+      "rev": "bedca8b426b2fee0ccac596d167d71bbe971253f",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {

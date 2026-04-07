@@ -11,7 +11,7 @@ now(function()
   add({ "https://github.com/rebelot/kanagawa.nvim" })
 
   require("kanagawa").setup({
-    compile = true,
+    compile = false,
     transparent = true,
     colors = {
       theme = {
