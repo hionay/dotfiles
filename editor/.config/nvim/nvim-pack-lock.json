@@ -25,7 +25,7 @@
       "src": "https://github.com/rebelot/kanagawa.nvim"
     },
     "mini.nvim": {
-      "rev": "402ee6c6ec8ea44b22330446c8fb4e615fd3953e",
+      "rev": "2431902e78b76f435542d1e606f08475360068ca",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "mini.pick": {
@@ -33,7 +33,7 @@
       "src": "https://github.com/nvim-mini/mini.pick"
     },
     "neogit": {
-      "rev": "5a7fca171e3ad07380745d573d791e95268b8f3f",
+      "rev": "5432fe2b2565bb10d868c759245cd4c64125da31",
       "src": "https://github.com/NeogitOrg/neogit"
     },
     "neotest": {
@@ -89,7 +89,7 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-textobjects": {
-      "rev": "93d60a475f0b08a8eceb99255863977d3a25f310",
+      "rev": "851e865342e5a4cb1ae23d31caf6e991e1c99f1e",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
     },
     "plenary.nvim": {
