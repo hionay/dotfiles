@@ -329,10 +329,13 @@ later(function()
   add({ "https://github.com/mfussenegger/nvim-lint" })
 
   require("lint").linters_by_ft = {
-    php = { "phpstan", "phpcs" },
+    php = { "phpstan", "phpcs", "psalm", "php" },
     typescript = { "eslint" },
     javascript = { "eslint" },
   }
+
+  local psalm = require("lint").linters.psalm
+  psalm.ignore_exitcode = true
 
   vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost" }, {
     callback = function()
@@ -340,3 +343,5 @@ later(function()
     end,
   })
 end)
+
+vim.lsp.codelens.enable(true)
