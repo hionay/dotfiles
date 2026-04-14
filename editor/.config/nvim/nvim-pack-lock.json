@@ -25,7 +25,7 @@
       "src": "https://github.com/rebelot/kanagawa.nvim"
     },
     "mini.nvim": {
-      "rev": "c67822c53e8e282fe863343e88aa0a8ca3534059",
+      "rev": "27a3e747a4e603b4121f5759e74020430ec7b7d5",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "mini.pick": {
@@ -97,7 +97,7 @@
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "vim-wakatime": {
-      "rev": "d7973b157a632d1edeff01818f18d67e584eeaff",
+      "rev": "cb7ba055330245b3a9d29f8bb4b82aeb2d52e580",
       "src": "https://github.com/wakatime/vim-wakatime"
     }
   }
