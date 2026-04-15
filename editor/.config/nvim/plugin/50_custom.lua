@@ -340,3 +340,8 @@ later(function()
 end)
 
 vim.lsp.codelens.enable(true)
+
+vim.opt.fillchars:append({
+  diff = "╱",
+  msgsep = "‾",
+})
