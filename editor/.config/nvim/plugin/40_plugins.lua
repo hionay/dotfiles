@@ -129,6 +129,7 @@ now_if_args(function()
     "golangci_lint_ls",
     "intelephense",
     "yamlls",
+    "copilot",
   })
 end)
 
@@ -164,6 +165,7 @@ later(function()
       yaml = { "yq" },
       json = { "jq" },
       dockerfile = { "dockerfmt" },
+      sh = { "shfmt" },
     },
     format_on_save = {
       timeout_ms = 1000,
