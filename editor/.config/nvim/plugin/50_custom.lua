@@ -140,6 +140,7 @@ later(function()
   add({ "https://github.com/nvim-neotest/neotest-vim-test" })
   add({ "https://github.com/fredrikaverpil/neotest-golang" })
   add({ "https://github.com/olimorris/neotest-phpunit" })
+  add({ "https://github.com/V13Axel/neotest-pest" })
 
   local neotest = require("neotest")
 
@@ -153,6 +154,7 @@ later(function()
         },
       }),
       require("neotest-phpunit"),
+      require("neotest-pest"),
       require("neotest-plenary"),
       require("neotest-vim-test"),
     },
