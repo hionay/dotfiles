@@ -139,6 +139,7 @@ later(function()
   add({ "https://github.com/nvim-neotest/neotest-plenary" })
   add({ "https://github.com/nvim-neotest/neotest-vim-test" })
   add({ "https://github.com/fredrikaverpil/neotest-golang" })
+  add({ "https://github.com/olimorris/neotest-phpunit" })
 
   local neotest = require("neotest")
 
@@ -151,6 +152,7 @@ later(function()
           "-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out",
         },
       }),
+      require("neotest-phpunit"),
       require("neotest-plenary"),
       require("neotest-vim-test"),
     },

@@ -101,7 +101,7 @@
       "src": "https://github.com/folke/sidekick.nvim"
     },
     "vim-wakatime": {
-      "rev": "cf3efc0588b9f21ba712a1f6b6f626d52484451a",
+      "rev": "0d5dbdb1918e9fe352f2bbc64c93765290e042db",
       "src": "https://github.com/wakatime/vim-wakatime"
     }
   }
