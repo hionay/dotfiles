@@ -54,7 +54,6 @@ later(function()
 
   require("neogit").setup({
     graph_style = "kitty",
-    process_spinner = true,
     diff_viewer = "diffview",
     integrations = {
       diffview = true,
