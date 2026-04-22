@@ -300,11 +300,6 @@ end)
 
 vim.lsp.codelens.enable(true)
 
-vim.opt.fillchars:append({
-  diff = "╱",
-  msgsep = "‾",
-})
-
 later(function()
   add({ "https://github.com/folke/sidekick.nvim" })
 
