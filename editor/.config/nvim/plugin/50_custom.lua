@@ -45,16 +45,20 @@ now(function()
 end)
 
 later(function()
+  Config.on_packchanged("codediff.nvim", { "install", "update" }, function()
+    vim.cmd("CodeDiff")
+  end, ":CodeDiff")
+
   add({
     "https://github.com/nvim-lua/plenary.nvim",
-    "https://github.com/sindrets/diffview.nvim",
+    "https://github.com/esmuellert/codediff.nvim",
     "https://github.com/nvim-mini/mini.pick",
     "https://github.com/NeogitOrg/neogit",
   })
 
   require("neogit").setup({
     graph_style = "kitty",
-    diff_viewer = "diffview",
+    diff_viewer = "codediff",
     integrations = {
       diffview = true,
       mini_pick = true,
