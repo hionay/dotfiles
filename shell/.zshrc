@@ -45,7 +45,7 @@ alias myip="curl ifconfig.me/ip"
 alias nvim-kickstart='NVIM_APPNAME="nvim-kickstart" nvim'
 
 # Update everything
-bu() {
+upa() {
   brew update && brew upgrade && brew cleanup && brew autoremove && brew doctor
   npm update -g
   gh extension upgrade --all
