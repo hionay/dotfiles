@@ -58,7 +58,7 @@ Config.leader_group_clues = {
   { mode = 'n', keys = '<Leader>m', desc = '+Map' },
   { mode = 'n', keys = '<Leader>o', desc = '+Other' },
   { mode = 'n', keys = '<Leader>s', desc = '+Session' },
-  { mode = 'n', keys = '<Leader>t', desc = '+Terminal' },
+  { mode = 'n', keys = '<Leader>t', desc = '+Terminal/Test' },
   { mode = 'n', keys = '<Leader>v', desc = '+Visits' },
 
   { mode = 'x', keys = '<Leader>g', desc = '+Git' },
@@ -224,9 +224,9 @@ nmap_leader('sr', '<Cmd>lua MiniSessions.select("read")<CR>',   'Read')
 nmap_leader('sR', '<Cmd>lua MiniSessions.restart()<CR>',        'Restart')
 nmap_leader('sw', '<Cmd>lua MiniSessions.write()<CR>',          'Write current')
 
--- t is for 'Terminal'
+-- t is for 'Terminal/Test'
 nmap_leader('tT', '<Cmd>horizontal term<CR>', 'Terminal (horizontal)')
-nmap_leader('tt', '<Cmd>vertical term<CR>',   'Terminal (vertical)')
+nmap_leader('tv', '<Cmd>vertical term<CR>',   'Terminal (vertical)')
 
 -- v is for 'Visits'. Common usage:
 -- - `<Leader>vv` - add    "core" label to current file.

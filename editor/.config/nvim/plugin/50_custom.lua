@@ -74,7 +74,9 @@ now(function()
 end)
 
 -- LSP
-vim.lsp.codelens.enable(true)
+later(function()
+  vim.lsp.codelens.enable(true)
+end)
 
 -- Git
 later(function()
@@ -85,7 +87,6 @@ later(function()
   add({
     "https://github.com/nvim-lua/plenary.nvim",
     "https://github.com/esmuellert/codediff.nvim",
-    "https://github.com/nvim-mini/mini.pick",
     "https://github.com/NeogitOrg/neogit",
   })
 
@@ -135,6 +136,7 @@ later(function()
   require("lint").linters.psalm.ignore_exitcode = true
 
   vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost" }, {
+    group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
     callback = function()
       require("lint").try_lint()
     end,

@@ -129,7 +129,6 @@ now_if_args(function()
     "golangci_lint_ls",
     "intelephense",
     "yamlls",
-    "copilot",
   })
 end)
 

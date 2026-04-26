@@ -79,6 +79,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(aliases alias-finder brew dirhistory docker fzf-tab golang git git-commit history macos tmux zsh-autosuggestions fast-syntax-highlighting)
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -116,8 +118,6 @@ zstyle ':omz:plugins:alias-finder' longer yes # disabled by default
 zstyle ':omz:plugins:alias-finder' exact yes # disabled by default
 zstyle ':omz:plugins:alias-finder' cheaper yes # disabled by default
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
 source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 
 source <(fx --comp zsh)
@@ -149,7 +149,6 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 # setting for gup command (auto generate)
 fpath=(~/.zsh/completion $fpath)
-autoload -Uz compinit && compinit -i
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

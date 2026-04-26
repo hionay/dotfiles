@@ -8,7 +8,7 @@
     <array>
       <string>/bin/bash</string>
       <string>-lc</string>
-      <string>/Users/hio/.local/bin/tmux-theme-sync</string>
+      <string>~/.local/bin/tmux-theme-sync</string>
     </array>
     <key>EnvironmentVariables</key>
     <dict>

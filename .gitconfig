@@ -22,7 +22,7 @@
 	verbose = true
 	gpgsign = true
 [diff]
-  external = difft
+	external = difft
 	tool = codediff
 [oh-my-zsh]
 	git-commit-alias = 349b9e49ced7682e27927ffb34b6522f011f3e74
