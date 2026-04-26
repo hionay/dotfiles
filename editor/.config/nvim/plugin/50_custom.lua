@@ -92,7 +92,7 @@ later(function()
   require("neogit").setup({
     graph_style = "kitty",
     diff_viewer = "codediff",
-    integrations = { diffview = true, mini_pick = true },
+    integrations = { codediff = true, mini_pick = true },
   })
 
   nmap_leader("gg", function()
