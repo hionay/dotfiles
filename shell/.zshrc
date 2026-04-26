@@ -40,9 +40,67 @@ export PATH="$HOME/go/bin:$HOME/.local/bin:/usr/local/go/bin:$PATH"
 # Aliases
 alias v="nvim"
 alias vim="nvim"
+alias lg="lazygit"
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
-alias myip="curl ifconfig.me/ip"
+alias myip="curl -s ifconfig.me"
 alias nvim-kickstart='NVIM_APPNAME="nvim-kickstart" nvim'
+alias copy="pbcopy"
+alias paste="pbpaste"
+
+# Drop-in replacements
+alias ls="eza --icons --group-directories-first"
+alias ll="eza -lah --icons --git --group-directories-first"
+alias lt="eza --tree --icons --level=2"
+alias cat="bat --paging=never"
+alias top="btop"
+alias find="fd"
+alias grep="rg"
+
+# Docker
+alias dps="docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}'"
+dex() { docker exec -it "$1" "${2:-sh}" }
+dlog() { docker logs -f "$1" }
+
+# Tmux
+t() { tmux new-session -As "${1:-main}" }
+
+# Utils
+mkcd() { mkdir -p "$1" && cd "$1" }
+serve() { python3 -m http.server "${1:-8000}" }
+ports() { lsof -iTCP -sTCP:LISTEN -n -P }
+reload() { source ~/.zshrc }
+extract() {
+  case "$1" in
+    *.tar.gz|*.tgz) tar xzf "$1" ;;
+    *.tar.bz2)      tar xjf "$1" ;;
+    *.zip)          unzip "$1" ;;
+    *.gz)           gunzip "$1" ;;
+    *.rar)          unrar x "$1" ;;
+    *)              echo "unknown archive: $1" ;;
+  esac
+}
+
+# FZF interactive
+fco() { git checkout "$(git branch -a | fzf | tr -d '[:space:]')" }
+fkill() { kill -9 "$(ps aux | fzf | awk '{print $2}')" }
+fcd() { cd "$(fd --type d | fzf)" }
+
+# Git
+git-clean() { git branch --merged | grep -v '\*\|main\|master\|dev' | xargs git branch -d }
+alias ghb="gh browse"
+
+# macOS
+alias localip="ipconfig getifaddr en0"
+alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
+alias o="open ."
+
+# Debug
+alias path='echo $PATH | tr ":" "\n"'
+alias zsh-time="time zsh -i -c exit"
+
+# Shell behavior
+setopt HIST_IGNORE_SPACE
+setopt CORRECT
 
 # Update everything
 upa() {
