@@ -9,11 +9,11 @@
       "src": "https://github.com/esmuellert/codediff.nvim"
     },
     "conform.nvim": {
-      "rev": "086a40dc7ed8242c03be9f47fbcee68699cc2395",
+      "rev": "dca1a190aa85f9065979ef35802fb77131911106",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "copilot.lua": {
-      "rev": "adff470bca742b7658228ed144589250ecb3dc0a",
+      "rev": "3b95c93d804077dd409d62a6da53a8c92ac8f415",
       "src": "https://github.com/zbirenbaum/copilot.lua"
     },
     "friendly-snippets": {
@@ -25,7 +25,7 @@
       "src": "https://github.com/rebelot/kanagawa.nvim"
     },
     "mini.nvim": {
-      "rev": "5849ef04c32a6a8e55957b946c0a275801d87530",
+      "rev": "be81509b7160aa02264a59789164a2e1c4a6750a",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "mini.pick": {
@@ -33,7 +33,7 @@
       "src": "https://github.com/nvim-mini/mini.pick"
     },
     "neogit": {
-      "rev": "d1cfc4986195239cac55700b675cea7a9578d430",
+      "rev": "792c139da736230855e8341ebe6175bb6eb8268b",
       "src": "https://github.com/NeogitOrg/neogit"
     },
     "neotest": {
@@ -41,7 +41,7 @@
       "src": "https://github.com/nvim-neotest/neotest"
     },
     "neotest-golang": {
-      "rev": "48634bebbfa1fe63ed50f170916112c538d8e70d",
+      "rev": "84c1f3be59f85a2f5bbb9290040077bc8a68a00c",
       "src": "https://github.com/fredrikaverpil/neotest-golang"
     },
     "neotest-pest": {
@@ -69,7 +69,7 @@
       "src": "https://github.com/leoluz/nvim-dap-go"
     },
     "nvim-dap-view": {
-      "rev": "134c018903abc2c9b6fd5fc34c64d906db468c9f",
+      "rev": "01ad4537bac9a0843e72c9615fa7fcaa69b119eb",
       "src": "https://github.com/igorlfs/nvim-dap-view"
     },
     "nvim-dap-virtual-text": {
@@ -81,7 +81,7 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "e146efacbafed3789ac568abcc5a981c5decaa58",
+      "rev": "21db1fd40cbcbf1524ae154ab8f394fdf085749a",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
@@ -105,7 +105,7 @@
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "sidekick.nvim": {
-      "rev": "17447a05f9385e5f8372b61530f6f9329cb82421",
+      "rev": "208e1c5b8170c01fd1d07df0139322a76479b235",
       "src": "https://github.com/folke/sidekick.nvim"
     },
     "vim-wakatime": {

@@ -1,5 +1,7 @@
+-- Options
 vim.o.swapfile = false
 
+-- Helpers
 local nmap_leader = function(suffix, rhs, desc)
   vim.keymap.set("n", "<Leader>" .. suffix, rhs, { desc = desc })
 end
@@ -10,6 +12,42 @@ end
 local add = vim.pack.add
 local now, later = Config.now, Config.later
 
+-- Package management commands
+local function complete_packages()
+  return vim
+    .iter(vim.pack.get())
+    :map(function(pack)
+      return pack.spec.name
+    end)
+    :totable()
+end
+
+vim.api.nvim_create_user_command("PackUpdate", function(info)
+  if #info.fargs ~= 0 then
+    vim.pack.update(info.fargs, { force = info.bang })
+  else
+    vim.pack.update(nil, { force = info.bang })
+  end
+end, { desc = "Update packages", nargs = "*", bang = true, complete = complete_packages })
+
+vim.api.nvim_create_user_command("PackDelete", function(info)
+  vim.pack.del(info.fargs, { force = info.bang })
+end, { desc = "Delete packages", nargs = "+", bang = true, complete = complete_packages })
+
+vim.api.nvim_create_user_command("PackClean", function()
+  local clean = vim
+    .iter(vim.pack.get())
+    :filter(function(pack)
+      return not pack.active
+    end)
+    :map(function(pack)
+      return pack.spec.name
+    end)
+    :totable()
+  vim.pack.del(clean)
+end, { desc = "Delete all inactive packages" })
+
+-- Colorscheme
 now(function()
   add({ "https://github.com/rebelot/kanagawa.nvim" })
 
@@ -17,13 +55,7 @@ now(function()
     compile = false,
     transparent = true,
     colors = {
-      theme = {
-        all = {
-          ui = {
-            bg_gutter = "none",
-          },
-        },
-      },
+      theme = { all = { ui = { bg_gutter = "none" } } },
     },
     overrides = function(colors)
       local theme = colors.theme
@@ -35,15 +67,16 @@ now(function()
       }
     end,
     theme = "dragon",
-    background = {
-      dark = "dragon",
-      light = "lotus",
-    },
+    background = { dark = "dragon", light = "lotus" },
   })
 
   vim.cmd("color kanagawa")
 end)
 
+-- LSP
+vim.lsp.codelens.enable(true)
+
+-- Git
 later(function()
   Config.on_packchanged("codediff.nvim", { "install", "update" }, function()
     vim.cmd("CodeDiff")
@@ -59,16 +92,15 @@ later(function()
   require("neogit").setup({
     graph_style = "kitty",
     diff_viewer = "codediff",
-    integrations = {
-      diffview = true,
-      mini_pick = true,
-    },
+    integrations = { diffview = true, mini_pick = true },
   })
+
   nmap_leader("gg", function()
     require("neogit").open()
   end, "Show Neogit")
 end)
 
+-- Navigation
 later(function()
   add({ "https://github.com/alexghergh/nvim-tmux-navigation" })
 
@@ -85,10 +117,31 @@ later(function()
   })
 end)
 
+-- Wakatime
 later(function()
   add({ "https://github.com/wakatime/vim-wakatime" })
 end)
 
+-- Linting
+later(function()
+  add({ "https://github.com/mfussenegger/nvim-lint" })
+
+  require("lint").linters_by_ft = {
+    php = { "phpstan", "phpcs", "psalm", "php" },
+    typescript = { "eslint" },
+    javascript = { "eslint" },
+  }
+
+  require("lint").linters.psalm.ignore_exitcode = true
+
+  vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost" }, {
+    callback = function()
+      require("lint").try_lint()
+    end,
+  })
+end)
+
+-- Debug (DAP)
 later(function()
   add({ "https://github.com/mfussenegger/nvim-dap" })
   add({ "https://github.com/igorlfs/nvim-dap-view" })
@@ -129,12 +182,13 @@ later(function()
     dv.toggle()
   end, "[d]ebug [u]i toggle")
   nmap_leader("de", function()
-    require("dap-view").eval()
+    dv.eval()
   end, "[d]ebug [e]val")
   nmap_leader("dn", dg.debug_test, "[d]ebug [n]earest test")
   nmap_leader("dL", dg.debug_last_test, "[d]ebug [L]ast test")
 end)
 
+-- Testing (Neotest)
 later(function()
   add({ "https://github.com/antoinemadec/FixCursorHold.nvim" })
   add({ "https://github.com/nvim-neotest/nvim-nio" })
@@ -200,106 +254,44 @@ later(function()
     neotest.run.run({ vim.fn.expand("%"), strategy = "dap" })
   end, "Debug current file")
 end)
-local function set_goos(goos)
-  if goos == nil then
-    vim.env.GOOS = nil
-    vim.notify("GOOS unset (using host OS)")
-  else
-    vim.env.GOOS = goos
-    vim.notify("GOOS set to " .. goos)
-  end
-  vim.cmd("lsp restart gopls")
-end
 
-vim.api.nvim_create_user_command("GoOS", function()
-  local pick = require("mini.pick")
-
-  local items = {
-    { text = "unset (host default)", goos = nil },
-    { text = "windows", goos = "windows" },
-    { text = "linux", goos = "linux" },
-    { text = "darwin", goos = "darwin" },
-    { text = "freebsd", goos = "freebsd" },
-  }
-
-  pick.start({
-    source = {
-      name = ("Select GOOS (current: %s)"):format(vim.env.GOOS or "unset"),
-      items = items,
-      choose = function(item)
-        if item then
-          set_goos(item.goos)
-        end
-      end,
-    },
-  })
-end, {})
-
-local function complete_packages()
-  return vim
-    .iter(vim.pack.get())
-    :map(function(pack)
-      return pack.spec.name
-    end)
-    :totable()
-end
-
-vim.api.nvim_create_user_command("PackUpdate", function(info)
-  if #info.fargs ~= 0 then
-    vim.pack.update(info.fargs, { force = info.bang })
-  else
-    vim.pack.update(nil, { force = info.bang })
-  end
-end, {
-  desc = "Update packages",
-  nargs = "*",
-  bang = true,
-  complete = complete_packages,
-})
-
-vim.api.nvim_create_user_command("PackDelete", function(info)
-  vim.pack.del(info.fargs, { force = info.bang })
-end, {
-  desc = "Delete packages",
-  nargs = "+",
-  bang = true,
-  complete = complete_packages,
-})
-
-vim.api.nvim_create_user_command("PackClean", function()
-  local clean = vim
-    .iter(vim.pack.get())
-    :filter(function(pack)
-      return not pack.active
-    end)
-    :map(function(pack)
-      return pack.spec.name
-    end)
-    :totable()
-  vim.pack.del(clean)
-end, { desc = "Delete all inactive packages" })
-
+-- Go utilities
 later(function()
-  add({ "https://github.com/mfussenegger/nvim-lint" })
+  local function set_goos(goos)
+    if goos == nil then
+      vim.env.GOOS = nil
+      vim.notify("GOOS unset (using host OS)")
+    else
+      vim.env.GOOS = goos
+      vim.notify("GOOS set to " .. goos)
+    end
+    vim.cmd("lsp restart gopls")
+  end
 
-  require("lint").linters_by_ft = {
-    php = { "phpstan", "phpcs", "psalm", "php" },
-    typescript = { "eslint" },
-    javascript = { "eslint" },
-  }
+  vim.api.nvim_create_user_command("GoOS", function()
+    local items = {
+      { text = "unset (host default)", goos = nil },
+      { text = "windows", goos = "windows" },
+      { text = "linux", goos = "linux" },
+      { text = "darwin", goos = "darwin" },
+      { text = "freebsd", goos = "freebsd" },
+    }
 
-  local psalm = require("lint").linters.psalm
-  psalm.ignore_exitcode = true
-
-  vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost" }, {
-    callback = function()
-      require("lint").try_lint()
-    end,
-  })
+    require("mini.pick").start({
+      source = {
+        name = ("Select GOOS (current: %s)"):format(vim.env.GOOS or "unset"),
+        items = items,
+        choose = function(item)
+          if item then
+            set_goos(item.goos)
+          end
+        end,
+      },
+    })
+  end, {})
 end)
 
-vim.lsp.codelens.enable(true)
-
+-- Sidekick (AI CLI)
 later(function()
   add({ "https://github.com/folke/sidekick.nvim" })
 
@@ -308,12 +300,7 @@ later(function()
 
   sidekick.setup({
     nes = { enabled = false },
-    cli = {
-      mux = {
-        backend = "tmux",
-        enabled = true,
-      },
-    },
+    cli = { mux = { backend = "tmux", enabled = true } },
   })
 
   vim.keymap.set("n", "<Tab>", function()
@@ -326,15 +313,9 @@ later(function()
     cli.toggle({ name = "claude" })
   end, { desc = "Sidekick Toggle Claude" })
 
-  nmap_leader("aa", function()
-    cli.toggle()
-  end, "Sidekick Toggle Cli")
-  nmap_leader("as", function()
-    cli.select()
-  end, "Select CLI")
-  nmap_leader("ad", function()
-    cli.close()
-  end, "Detach a CLI Session")
+  nmap_leader("aa", cli.toggle, "Sidekick Toggle Cli")
+  nmap_leader("as", cli.select, "Select CLI")
+  nmap_leader("ad", cli.close, "Detach a CLI Session")
   nmap_leader("af", function()
     cli.send({ msg = "{file}" })
   end, "Send File")
@@ -348,11 +329,10 @@ later(function()
   nxmap_leader("av", function()
     cli.send({ msg = "{selection}" })
   end, "Send Visual Selection")
-  nxmap_leader("ap", function()
-    cli.prompt()
-  end, "Sidekick Select Prompt")
+  nxmap_leader("ap", cli.prompt, "Sidekick Select Prompt")
 end)
 
+-- Copilot
 later(function()
   add({ "https://github.com/zbirenbaum/copilot.lua" })
 
@@ -373,10 +353,7 @@ later(function()
       },
     },
     nes = { enabled = false },
-    filetypes = {
-      markdown = true,
-      gitcommit = true,
-    },
+    filetypes = { markdown = true, gitcommit = true },
   })
 
   vim.keymap.set("i", "<C-y>", function()

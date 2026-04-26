@@ -10,8 +10,8 @@ confirm-close-surface = false
 macos-titlebar-style = tabs
 #window-decoration = true
 
-# background-opacity = 0.97
-# background-blur-radius = 40
+background-opacity = 0.99
+background-blur = true
 theme = light:Kanagawa Lotus,dark:Kanagawa Dragon
 mouse-hide-while-typing = true
 cursor-style-blink = false
