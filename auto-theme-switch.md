@@ -41,8 +41,14 @@ Tmux 3.6 added support for [mode 2031](https://github.com/tmux/tmux/pull/4353) â
 Add this to `tmux.conf`:
 
 ```tmux
-set-hook -g client-dark-theme 'set -g @ukiyo-theme "kanagawa/dragon" ; source-file ~/.config/tmux/tmux.conf'
-set-hook -g client-light-theme 'set -g @ukiyo-theme "kanagawa/lotus" ; source-file ~/.config/tmux/tmux.conf'
+set-hook -g client-dark-theme {
+  set -g @ukiyo-theme "kanagawa/dragon"
+  run ~/.tmux/plugins/tmux-ukiyo/ukiyo.tmux
+}
+set-hook -g client-light-theme {
+  set -g @ukiyo-theme "kanagawa/lotus"
+  run ~/.tmux/plugins/tmux-ukiyo/ukiyo.tmux
+}
 ```
 
 That's all. No polling script, no LaunchAgent. When a client attaches, tmux subscribes to mode 2031 and Ghostty immediately sends back the current theme, so the hook also fires on startup â€” no separate startup check needed.
