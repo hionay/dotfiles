@@ -13,7 +13,7 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "copilot.lua": {
-      "rev": "3b95c93d804077dd409d62a6da53a8c92ac8f415",
+      "rev": "78c638293f0ea6a2245eca46e9933ee271792d7e",
       "src": "https://github.com/zbirenbaum/copilot.lua"
     },
     "friendly-snippets": {
@@ -69,7 +69,7 @@
       "src": "https://github.com/leoluz/nvim-dap-go"
     },
     "nvim-dap-view": {
-      "rev": "01ad4537bac9a0843e72c9615fa7fcaa69b119eb",
+      "rev": "6e7c49a107f70af237543413690a60a63d8d7725",
       "src": "https://github.com/igorlfs/nvim-dap-view"
     },
     "nvim-dap-virtual-text": {
@@ -81,7 +81,7 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "eeef061d58d759b5419c1e20c4b3a5bc3154f871",
+      "rev": "0b99551a47cc08f7afa1946580e9d7033ed49854",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
@@ -109,7 +109,7 @@
       "src": "https://github.com/folke/sidekick.nvim"
     },
     "vim-wakatime": {
-      "rev": "8217dfb5a5a3ad3a509365d8a39d7daca12b1745",
+      "rev": "5f458398a217735b908ae40d1c2851cc69e7d817",
       "src": "https://github.com/wakatime/vim-wakatime"
     }
   }
