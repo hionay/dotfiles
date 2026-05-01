@@ -85,7 +85,6 @@ later(function()
   end, ":CodeDiff")
 
   add({
-    "https://github.com/nvim-lua/plenary.nvim",
     "https://github.com/esmuellert/codediff.nvim",
     "https://github.com/NeogitOrg/neogit",
   })
@@ -193,6 +192,7 @@ end)
 -- Testing (Neotest)
 later(function()
   add({ "https://github.com/antoinemadec/FixCursorHold.nvim" })
+  add({ "https://github.com/nvim-lua/plenary.nvim" })
   add({ "https://github.com/nvim-neotest/nvim-nio" })
   add({ "https://github.com/nvim-neotest/neotest" })
   add({ "https://github.com/nvim-neotest/neotest-plenary" })
