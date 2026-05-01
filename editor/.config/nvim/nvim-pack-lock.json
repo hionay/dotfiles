@@ -25,7 +25,7 @@
       "src": "https://github.com/rebelot/kanagawa.nvim"
     },
     "mini.nvim": {
-      "rev": "be81509b7160aa02264a59789164a2e1c4a6750a",
+      "rev": "0f339bf5c93f392dc5d2417d47d7b9edc5f96fe8",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "neogit": {
@@ -33,7 +33,7 @@
       "src": "https://github.com/NeogitOrg/neogit"
     },
     "neotest": {
-      "rev": "fd0b7986dd0ae04e38ec7dc0c78a432e3820839c",
+      "rev": "ad991822b7076b1d940b33a9d6d0d30416d5df81",
       "src": "https://github.com/nvim-neotest/neotest"
     },
     "neotest-golang": {
@@ -65,7 +65,7 @@
       "src": "https://github.com/leoluz/nvim-dap-go"
     },
     "nvim-dap-view": {
-      "rev": "516c1187cbae16bc08593bbcb0c9b03d53048fdc",
+      "rev": "e8199a2c2202415785b65799fa92e1a1cd2f4d4f",
       "src": "https://github.com/igorlfs/nvim-dap-view"
     },
     "nvim-dap-virtual-text": {
@@ -77,7 +77,7 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "f7e89f3d19fb436e1fbeff3bf4291eef35da94e3",
+      "rev": "31026a13eefb20681124706a79fc1df6bf11ab27",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {

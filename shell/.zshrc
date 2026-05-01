@@ -10,10 +10,12 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
-  aliases alias-finder
+  aliases
   brew
   dirhistory
   docker
+  dotenv
+  eza
   fzf-tab
   golang
   git git-commit
@@ -24,10 +26,8 @@ plugins=(
   fast-syntax-highlighting
 )
 
-zstyle ':omz:plugins:alias-finder' autoload yes
-zstyle ':omz:plugins:alias-finder' longer yes
-zstyle ':omz:plugins:alias-finder' exact yes
-zstyle ':omz:plugins:alias-finder' cheaper yes
+zstyle ':omz:plugins:eza' 'git-status' yes
+zstyle ':omz:plugins:eza' 'icons' yes
 
 fpath=(~/.zsh/completion $fpath)
 source $ZSH/oh-my-zsh.sh
@@ -48,9 +48,6 @@ alias copy="pbcopy"
 alias paste="pbpaste"
 
 # Drop-in replacements
-alias ls="eza --icons --group-directories-first"
-alias ll="eza -lah --icons --git --group-directories-first"
-alias lt="eza --tree --icons --level=2"
 alias cat="bat --paging=never"
 alias top="btop"
 alias find="fd"
