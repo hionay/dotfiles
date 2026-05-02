@@ -18,7 +18,7 @@ plugins=(
   eza
   fzf-tab
   golang
-  git git-commit
+  git
   history
   macos
   tmux
