@@ -34,7 +34,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Environment
 export EDITOR="nvim"
+export MANPAGER="nvim +Man!"
 export XDG_CONFIG_HOME="$HOME/.config"
+export HOMEBREW_NO_AUTO_UPDATE=1
 export PATH="$HOME/go/bin:$HOME/.local/bin:/usr/local/go/bin:$PATH"
 
 # Aliases
@@ -70,6 +72,7 @@ extract() {
   case "$1" in
     *.tar.gz|*.tgz) tar xzf "$1" ;;
     *.tar.bz2)      tar xjf "$1" ;;
+    *.tar.xz)       tar xJf "$1" ;;
     *.zip)          unzip "$1" ;;
     *.gz)           gunzip "$1" ;;
     *.rar)          unrar x "$1" ;;
