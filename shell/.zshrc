@@ -14,7 +14,6 @@ plugins=(
   brew
   dirhistory
   docker
-  dotenv
   eza
   fzf-tab
   golang
