@@ -61,7 +61,7 @@ btop() {
   else
     theme="kanagawa-lotus"
   fi
-  sed -i '' "s/^color_theme = .*/color_theme = \"$theme\"/" ~/.config/btop/btop.conf
+  sed -i '' "s/^color_theme = .*/color_theme = \"$theme\"/" "$(realpath ~/.config/btop/btop.conf)"
   command btop "$@"
 }
 
