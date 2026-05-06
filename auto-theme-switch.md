@@ -1,6 +1,6 @@
-# Auto Theme Switching for Ghostty, Neovim, and Tmux (Kanagawa Dragon/Lotus)
+# Auto Theme Switching for Ghostty, Neovim, Tmux, and btop (Kanagawa Dragon/Lotus)
 
-Kanagawa Dragon for dark mode, Kanagawa Lotus for light mode. Here's how to wire all three tools to follow macOS system appearance automatically.
+Kanagawa Dragon for dark mode, Kanagawa Lotus for light mode. Here's how to wire all four tools to follow macOS system appearance automatically.
 
 ---
 
@@ -55,6 +55,27 @@ That's all. No polling script, no LaunchAgent. When a client attaches, tmux subs
 
 ---
 
+## btop
+
+btop has no native appearance detection, so a `btop` shell function in `.zshrc` checks the mode and rewrites `color_theme` in `~/.config/btop/btop.conf` before each launch:
+
+```zsh
+btop() {
+  local theme
+  if [[ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" == "Dark" ]]; then
+    theme="kanagawa-dragon"
+  else
+    theme="kanagawa-lotus"
+  fi
+  sed -i '' "s/^color_theme = .*/color_theme = \"$theme\"/" ~/.config/btop/btop.conf
+  command btop "$@"
+}
+```
+
+Picks the right theme on every launch. The `top` alias routes through this function automatically.
+
+---
+
 ## Result
 
-Toggle macOS dark/light mode. Ghostty switches instantly, Neovim follows the terminal's background signal, and tmux switches immediately via the mode 2031 hook.
+Toggle macOS dark/light mode. Ghostty switches instantly, Neovim follows the terminal's background signal, tmux switches immediately via the mode 2031 hook, and btop picks the correct theme on next launch.

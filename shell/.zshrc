@@ -54,6 +54,17 @@ alias top="btop"
 alias find="fd"
 alias grep="rg"
 
+btop() {
+  local theme
+  if [[ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" == "Dark" ]]; then
+    theme="kanagawa-dragon"
+  else
+    theme="kanagawa-lotus"
+  fi
+  sed -i '' "s/^color_theme = .*/color_theme = \"$theme\"/" ~/.config/btop/btop.conf
+  command btop "$@"
+}
+
 # Docker
 alias dps="docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}'"
 dex() { docker exec -it "$1" "${2:-sh}" }

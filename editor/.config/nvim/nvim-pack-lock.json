@@ -13,7 +13,7 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "copilot.lua": {
-      "rev": "78c638293f0ea6a2245eca46e9933ee271792d7e",
+      "rev": "61784cb7a1a109d72b9cb107ee70d11bc7d095ff",
       "src": "https://github.com/zbirenbaum/copilot.lua"
     },
     "friendly-snippets": {
@@ -25,11 +25,11 @@
       "src": "https://github.com/rebelot/kanagawa.nvim"
     },
     "mini.nvim": {
-      "rev": "0f339bf5c93f392dc5d2417d47d7b9edc5f96fe8",
+      "rev": "48555f1615f08c6318150aacb52bf7d61a5af798",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "neogit": {
-      "rev": "88000e7e60177558d1b428a0d561c92e5d81341e",
+      "rev": "f8bcc625fe1b9bd55f7853820fddac9b0996f697",
       "src": "https://github.com/NeogitOrg/neogit"
     },
     "neotest": {
@@ -65,7 +65,7 @@
       "src": "https://github.com/leoluz/nvim-dap-go"
     },
     "nvim-dap-view": {
-      "rev": "e8199a2c2202415785b65799fa92e1a1cd2f4d4f",
+      "rev": "988c0cfa8740fcf6c0528ddf11e2651d2d0ae792",
       "src": "https://github.com/igorlfs/nvim-dap-view"
     },
     "nvim-dap-virtual-text": {
