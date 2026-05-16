@@ -302,7 +302,11 @@ later(function()
 
   sidekick.setup({
     nes = { enabled = false },
-    cli = { mux = { backend = "tmux", enabled = true } },
+    cli = {
+      -- Use real tmux splits instead of :terminal so that OSC escape
+      -- sequences (system theme detection) are properly proxied.
+      mux = { backend = "tmux", enabled = true, create = "split" },
+    },
   })
 
   vim.keymap.set("n", "<Tab>", function()
