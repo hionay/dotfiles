@@ -28,6 +28,9 @@ plugins=(
 zstyle ':omz:plugins:eza' 'git-status' yes
 zstyle ':omz:plugins:eza' 'icons' yes
 
+# Fix stale fpath after Homebrew zsh upgrades
+fpath+=(/opt/homebrew/share/zsh/functions)
+
 fpath=(~/.zsh/completion $fpath)
 source $ZSH/oh-my-zsh.sh
 
@@ -36,7 +39,7 @@ export EDITOR="nvim"
 export MANPAGER="nvim +Man!"
 export XDG_CONFIG_HOME="$HOME/.config"
 export HOMEBREW_NO_AUTO_UPDATE=1
-export PATH=":$HOME/.local/bin:$HOME/go/bin:/usr/local/go/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/go/bin:/usr/local/go/bin:$PATH"
 
 # Aliases
 alias v="nvim"
