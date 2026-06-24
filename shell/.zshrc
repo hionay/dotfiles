@@ -47,7 +47,7 @@ alias v="nvim"
 alias vim="nvim"
 alias lg="lazygit"
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
-alias myip="curl -s ifconfig.me"
+alias myip="curl -s ifconfig.me && echo"
 alias nvim-kickstart='NVIM_APPNAME="nvim-kickstart" nvim'
 alias copy="pbcopy"
 alias paste="pbpaste"
