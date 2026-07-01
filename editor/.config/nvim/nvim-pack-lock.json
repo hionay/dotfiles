@@ -13,7 +13,7 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "copilot.lua": {
-      "rev": "7df55b20b5b653941f0bcff87e559cabb6fafeb0",
+      "rev": "760912b5992e1d6437378a9c7f2b0cb950966cf5",
       "src": "https://github.com/zbirenbaum/copilot.lua"
     },
     "friendly-snippets": {
@@ -25,7 +25,7 @@
       "src": "https://github.com/rebelot/kanagawa.nvim"
     },
     "mini.nvim": {
-      "rev": "c248713d3530710f67ec804cfbdfcd5b02b19dee",
+      "rev": "dc8a9918c3b1bc18a5fcd04d39b6d658074c0886",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "neogit": {
@@ -33,7 +33,7 @@
       "src": "https://github.com/NeogitOrg/neogit"
     },
     "neotest": {
-      "rev": "ad991822b7076b1d940b33a9d6d0d30416d5df81",
+      "rev": "ff5437f7d9af801917bed119082934b0eb6ee0e9",
       "src": "https://github.com/nvim-neotest/neotest"
     },
     "neotest-golang": {
@@ -77,7 +77,7 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "3371bf298c1f56efc26771ee961f461176958fb5",
+      "rev": "dd1c9b802c943278179a5d819369cda085b79d45",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
