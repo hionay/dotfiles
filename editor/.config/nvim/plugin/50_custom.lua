@@ -306,6 +306,18 @@ later(function()
       -- Use real tmux splits instead of :terminal so that OSC escape
       -- sequences (system theme detection) are properly proxied.
       mux = { backend = "tmux", enabled = true, create = "split" },
+      tools = {
+        gemini = {
+          cmd = { "gemini" },
+          -- forward Vertex AI vars from nvim's env: tmux panes spawned by
+          -- sidekick don't run a login shell, so they never source zsh_secrets
+          env = {
+            GOOGLE_CLOUD_PROJECT = vim.env.GOOGLE_CLOUD_PROJECT,
+            GOOGLE_CLOUD_LOCATION = vim.env.GOOGLE_CLOUD_LOCATION,
+            GOOGLE_GENAI_USE_VERTEXAI = vim.env.GOOGLE_GENAI_USE_VERTEXAI,
+          },
+        },
+      },
     },
   })
 

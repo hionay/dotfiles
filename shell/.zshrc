@@ -125,6 +125,8 @@ upa() {
   omz update
 }
 
+[[ -f ~/.zsh_secrets ]] && source ~/.zsh_secrets
+
 # Tool integrations
 source ~/.orbstack/shell/init.zsh 2>/dev/null || true
 source <(fzf --zsh)
