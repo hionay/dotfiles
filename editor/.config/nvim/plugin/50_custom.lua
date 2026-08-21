@@ -307,6 +307,16 @@ later(function()
       -- sequences (system theme detection) are properly proxied.
       mux = { backend = "tmux", enabled = true, create = "split" },
       tools = {
+        agy = {
+          -- zsh wraps agy in a function setting this var; sidekick spawns
+          -- without a shell, so replicate it here
+          cmd = { "agy" },
+          env = {
+            GOOGLE_CLOUD_PROJECT = vim.env.GOOGLE_CLOUD_PROJECT,
+            GOOGLE_CLOUD_LOCATION = vim.env.GOOGLE_CLOUD_LOCATION,
+            GOOGLE_GENAI_USE_VERTEXAI = vim.env.GOOGLE_GENAI_USE_VERTEXAI,
+          },
+        },
         gemini = {
           cmd = { "gemini" },
           -- forward Vertex AI vars from nvim's env: tmux panes spawned by

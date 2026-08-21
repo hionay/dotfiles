@@ -52,6 +52,15 @@ alias nvim-kickstart='NVIM_APPNAME="nvim-kickstart" nvim'
 alias copy="pbcopy"
 alias paste="pbpaste"
 
+# Antigravity CLI
+agy() {
+  GOOGLE_CLOUD_PROJECT=poltio-dev command agy "$@"
+}
+
+gemini() {
+  GOOGLE_CLOUD_PROJECT=poltio-dev command gemini "$@"
+}
+
 # Drop-in replacements
 alias cat="bat --paging=never"
 alias top="btop"
