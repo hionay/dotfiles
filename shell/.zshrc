@@ -3,6 +3,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Keep PATH deduped so re-sourcing this file does not stack entries
+typeset -U path PATH
+
 # Homebrew: must come before OMZ so plugins that call brew find it
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -90,7 +93,7 @@ t() { tmux new-session -As "${1:-main}" }
 mkcd() { mkdir -p "$1" && cd "$1" }
 serve() { python3 -m http.server "${1:-8000}" }
 ports() { lsof -iTCP -sTCP:LISTEN -n -P }
-reload() { source ~/.zshrc }
+reload() { exec zsh }   # fresh process: re-sourcing would re-wrap the ZLE widgets
 extract() {
   case "$1" in
     *.tar.gz|*.tgz) tar xzf "$1" ;;
@@ -104,12 +107,31 @@ extract() {
 }
 
 # FZF interactive
-fco() { git checkout "$(git branch -a | fzf | tr -d '[:space:]')" }
-fkill() { kill -9 "$(ps aux | fzf | awk '{print $2}')" }
-fcd() { cd "$(fd --type d | fzf)" }
+fco() {
+  local b
+  b=$(git branch -a --format='%(refname:short)' |
+    sed -e 's|^origin/||' -e '/^origin$/d' | sort -u | fzf) || return
+  [[ -n $b ]] && git checkout "$b"
+}
+fkill() {
+  local p
+  p=$(ps aux | fzf --header-lines=1 | awk '{print $2}') || return
+  [[ -n $p ]] && kill -9 "$p"
+}
+fcd() {
+  local d
+  d=$(fd --type d | fzf) || return
+  [[ -n $d ]] && cd "$d"
+}
 
 # Git
-git-clean() { git branch --merged | grep -v '\*\|main\|master\|dev' | xargs git branch -d }
+# 'command' bypasses the rg alias above: rg would read \| as a literal pipe,
+# so the filter would match nothing and -d would eat main/master/dev.
+git-clean() {
+  git branch --merged "${1:-main}" |
+    command grep -vE '^\*|^[[:space:]]*(main|master|dev)$' |
+    xargs git branch -d
+}
 alias ghb="gh browse"
 
 # macOS
@@ -138,8 +160,8 @@ upa() {
 
 # Tool integrations
 source ~/.orbstack/shell/init.zsh 2>/dev/null || true
-source <(fzf --zsh)
-source <(fx --comp zsh)
-eval "$(zoxide init zsh)"
+(( $+commands[fzf] )) && source <(fzf --zsh)
+(( $+commands[fx] )) && source <(fx --comp zsh)
+(( $+commands[zoxide] )) && eval "$(zoxide init zsh)"
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
