@@ -1,6 +1,3 @@
--- Options
-vim.o.swapfile = false
-
 -- Helpers
 local nmap_leader = function(suffix, rhs, desc)
   vim.keymap.set("n", "<Leader>" .. suffix, rhs, { desc = desc })
@@ -23,11 +20,7 @@ local function complete_packages()
 end
 
 vim.api.nvim_create_user_command("PackUpdate", function(info)
-  if #info.fargs ~= 0 then
-    vim.pack.update(info.fargs, { force = info.bang })
-  else
-    vim.pack.update(nil, { force = info.bang })
-  end
+  vim.pack.update(#info.fargs > 0 and info.fargs or nil, { force = info.bang })
 end, { desc = "Update packages", nargs = "*", bang = true, complete = complete_packages })
 
 vim.api.nvim_create_user_command("PackDelete", function(info)
@@ -80,10 +73,6 @@ end)
 
 -- Git
 later(function()
-  Config.on_packchanged("codediff.nvim", { "install", "update" }, function()
-    vim.cmd("CodeDiff")
-  end, ":CodeDiff")
-
   add({
     "https://github.com/esmuellert/codediff.nvim",
     "https://github.com/NeogitOrg/neogit",
@@ -126,18 +115,28 @@ end)
 later(function()
   add({ "https://github.com/mfussenegger/nvim-lint" })
 
-  require("lint").linters_by_ft = {
+  local lint = require("lint")
+
+  lint.linters_by_ft = {
     php = { "phpstan", "phpcs", "psalm", "php" },
     typescript = { "eslint" },
     javascript = { "eslint" },
   }
 
-  require("lint").linters.psalm.ignore_exitcode = true
+  lint.linters.psalm.ignore_exitcode = true
 
-  vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost" }, {
-    group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
+  local group = vim.api.nvim_create_augroup("nvim-lint", { clear = true })
+  vim.api.nvim_create_autocmd("BufWritePost", {
+    group = group,
     callback = function()
-      require("lint").try_lint()
+      lint.try_lint()
+    end,
+  })
+  vim.api.nvim_create_autocmd("BufReadPost", {
+    group = group,
+    callback = function()
+      -- phpstan, phpcs and psalm are too slow to run on every file open
+      lint.try_lint(vim.bo.filetype == "php" and { "php" } or nil)
     end,
   })
 end)
@@ -147,26 +146,16 @@ later(function()
   add({ "https://github.com/mfussenegger/nvim-dap" })
   add({ "https://github.com/igorlfs/nvim-dap-view" })
   add({ "https://github.com/leoluz/nvim-dap-go" })
-  add({ "https://github.com/theHamsta/nvim-dap-virtual-text" })
 
   local dap = require("dap")
   local dv = require("dap-view")
   local dg = require("dap-go")
 
-  dv.setup()
+  dv.setup({
+    auto_toggle = "keep_terminal",
+    virtual_text = { enabled = true },
+  })
   dg.setup()
-  require("nvim-dap-virtual-text").setup({})
-
-  for _, ev in ipairs({ "attach", "launch" }) do
-    dap.listeners.before[ev]["dap-view"] = function()
-      dv.open()
-    end
-  end
-  for _, ev in ipairs({ "event_terminated", "event_exited" }) do
-    dap.listeners.before[ev]["dap-view"] = function()
-      dv.close()
-    end
-  end
 
   nmap_leader("db", dap.toggle_breakpoint, "[d]ebug [b]reakpoint")
   nmap_leader("dB", function()
@@ -191,12 +180,10 @@ end)
 
 -- Testing (Neotest)
 later(function()
-  add({ "https://github.com/antoinemadec/FixCursorHold.nvim" })
   add({ "https://github.com/nvim-lua/plenary.nvim" })
   add({ "https://github.com/nvim-neotest/nvim-nio" })
   add({ "https://github.com/nvim-neotest/neotest" })
   add({ "https://github.com/nvim-neotest/neotest-plenary" })
-  add({ "https://github.com/nvim-neotest/neotest-vim-test" })
   add({ "https://github.com/fredrikaverpil/neotest-golang" })
   add({ "https://github.com/olimorris/neotest-phpunit" })
   add({ "https://github.com/V13Axel/neotest-pest" })
@@ -206,16 +193,13 @@ later(function()
   neotest.setup({
     adapters = {
       require("neotest-golang")({
-        go_test_args = {
-          "-v",
-          "-race",
-          "-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out",
-        },
+        go_test_args = function()
+          return { "-v", "-race", "-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out" }
+        end,
       }),
       require("neotest-phpunit"),
       require("neotest-pest"),
       require("neotest-plenary"),
-      require("neotest-vim-test"),
     },
   })
 
@@ -228,9 +212,6 @@ later(function()
   nmap_leader("tA", function()
     neotest.run.run(vim.uv.cwd())
   end, "[t]est [A]ll files")
-  nmap_leader("tS", function()
-    neotest.run.run({ suite = true })
-  end, "[t]est [S]uite")
   nmap_leader("tn", function()
     neotest.run.run()
   end, "[t]est [n]earest")
@@ -297,45 +278,28 @@ end)
 later(function()
   add({ "https://github.com/folke/sidekick.nvim" })
 
-  local sidekick = require("sidekick")
   local cli = require("sidekick.cli")
 
-  sidekick.setup({
+  -- Forward Vertex AI vars from nvim's env: tmux panes spawned by sidekick
+  -- don't run a login shell, so they never source zsh_secrets
+  local vertex_env = {
+    GOOGLE_CLOUD_PROJECT = vim.env.GOOGLE_CLOUD_PROJECT,
+    GOOGLE_CLOUD_LOCATION = vim.env.GOOGLE_CLOUD_LOCATION,
+    GOOGLE_GENAI_USE_VERTEXAI = vim.env.GOOGLE_GENAI_USE_VERTEXAI,
+  }
+
+  require("sidekick").setup({
     nes = { enabled = false },
     cli = {
       -- Use real tmux splits instead of :terminal so that OSC escape
       -- sequences (system theme detection) are properly proxied.
       mux = { backend = "tmux", enabled = true, create = "split" },
       tools = {
-        agy = {
-          -- zsh wraps agy in a function setting this var; sidekick spawns
-          -- without a shell, so replicate it here
-          cmd = { "agy" },
-          env = {
-            GOOGLE_CLOUD_PROJECT = vim.env.GOOGLE_CLOUD_PROJECT,
-            GOOGLE_CLOUD_LOCATION = vim.env.GOOGLE_CLOUD_LOCATION,
-            GOOGLE_GENAI_USE_VERTEXAI = vim.env.GOOGLE_GENAI_USE_VERTEXAI,
-          },
-        },
-        gemini = {
-          cmd = { "gemini" },
-          -- forward Vertex AI vars from nvim's env: tmux panes spawned by
-          -- sidekick don't run a login shell, so they never source zsh_secrets
-          env = {
-            GOOGLE_CLOUD_PROJECT = vim.env.GOOGLE_CLOUD_PROJECT,
-            GOOGLE_CLOUD_LOCATION = vim.env.GOOGLE_CLOUD_LOCATION,
-            GOOGLE_GENAI_USE_VERTEXAI = vim.env.GOOGLE_GENAI_USE_VERTEXAI,
-          },
-        },
+        agy = { cmd = { "agy" }, env = vertex_env },
+        gemini = { cmd = { "gemini" }, env = vertex_env },
       },
     },
   })
-
-  vim.keymap.set("n", "<Tab>", function()
-    if not sidekick.nes_jump_or_apply() then
-      return "<Tab>"
-    end
-  end, { expr = true, desc = "Goto/Apply Next Edit Suggestion" })
 
   vim.keymap.set({ "n", "t", "i", "x" }, "<C-.>", function()
     cli.toggle({ name = "claude" })
