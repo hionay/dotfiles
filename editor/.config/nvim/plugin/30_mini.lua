@@ -119,6 +119,21 @@ now(function()
   require("mini.starter").setup()
 end)
 
+-- Statuscolumn. Sets `:h 'statuscolumn'` for improved window's left column.
+-- Example usage:
+-- - Shows differently in active and inactive windows. By default, with separator
+--   and dimmed respectively.
+-- - Reorders main sections (line number, folds, and signs) for a more efficient
+--   use of space.
+-- - Shows extra indication for virtual and wrapped lines.
+--
+-- See also:
+-- - `:h MiniStatuscolumn.config` - general overview of available configuration.
+-- - `:h MiniStatuscolumn.gen_content.main()` - simplified content customization.
+now(function()
+  require("mini.statuscolumn").setup()
+end)
+
 -- Statusline. Sets `:h 'statusline'` to show more info in a line below window.
 -- Example usage:
 -- - Left most section indicates current mode (text + highlighting).
