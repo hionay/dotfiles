@@ -44,6 +44,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_NO_ASK=1
 export PATH="$HOME/.local/bin:$HOME/go/bin:/usr/local/go/bin:$PATH"
+export GOPRIVATE='github.com/hionay/*'
 
 # Aliases
 alias v="nvim"
