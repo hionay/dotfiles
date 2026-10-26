@@ -7,7 +7,6 @@ adjust-cell-height = 25%
 # Window
 window-padding-balance = true
 window-save-state = always
-macos-titlebar-style = tabs
 confirm-close-surface = false
 quit-after-last-window-closed = true
 
