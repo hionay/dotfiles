@@ -19,10 +19,12 @@ mouse-hide-while-typing = true
 scrollbar = never
 
 # Shell & Input
-shell-integration-features = no-cursor
+shell-integration-features = no-cursor,ssh-env,ssh-terminfo
 macos-option-as-alt = left
 focus-follows-mouse = true
 notify-on-command-finish = unfocused
+notify-on-command-finish-action = no-bell,notify
+keybind = global:cmd+grave_accent=toggle_quick_terminal
 
 # Clipboard
 copy-on-select = clipboard
