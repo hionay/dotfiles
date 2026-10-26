@@ -11,27 +11,21 @@ confirm-close-surface = false
 quit-after-last-window-closed = true
 
 # Appearance
-background-opacity = 0.99
-background-blur = true
+background-opacity = 0.9
+background-blur = macos-glass-regular
 theme = light:Kanagawa Lotus,dark:Kanagawa Dragon
-cursor-style = block
 cursor-style-blink = false
 mouse-hide-while-typing = true
-link-previews = true
 scrollbar = never
 
 # Shell & Input
 shell-integration-features = no-cursor
 macos-option-as-alt = left
 focus-follows-mouse = true
-cursor-click-to-move = true
-working-directory = inherit
 notify-on-command-finish = unfocused
 
 # Clipboard
 copy-on-select = clipboard
-clipboard-trim-trailing-spaces = true
-clipboard-paste-protection = true
 
 # Updates
 auto-update = download
