@@ -17,7 +17,7 @@
       "src": "https://github.com/rebelot/kanagawa.nvim"
     },
     "mini.nvim": {
-      "rev": "acfc3b2702126209201ca8b38a105294fa2c1ddd",
+      "rev": "ed8683521996657ce774e5eec9d2f9b1b5ecef82",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "neogit": {
@@ -73,7 +73,7 @@
       "src": "https://github.com/alexghergh/nvim-tmux-navigation"
     },
     "nvim-treesitter": {
-      "rev": "29212d826054bb2948fa9d3a99eca9bf6a050eb2",
+      "rev": "a2f694478be07f89c2d03cc17858a8745a400c4b",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-textobjects": {

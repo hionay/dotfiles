@@ -28,7 +28,12 @@ vim.o.swapfile    = false          -- Don't create swap files
 vim.o.switchbuf   = 'usetab'       -- Use already opened buffers when switching
 vim.o.undofile    = true           -- Enable persistent undo
 
-vim.o.shada = "'100,<50,s10,:1000,/100,@100,h" -- Limit ShaDa file (for startup)
+vim.o.shada = "'100,<50,s10,:1000,/100,@100,h,r/tmp/,r/private/" -- Limit ShaDa file (for startup)
+
+-- Disable unused remote plugin providers
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
 
 -- UI =========================================================================
 vim.o.breakindent    = true       -- Indent wrapped lines to match line start
