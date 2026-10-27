@@ -12,7 +12,7 @@ confirm-close-surface = false
 quit-after-last-window-closed = true
 
 # Appearance
-background-opacity = 0.95
+background-opacity = 0.98
 background-blur = macos-glass-regular
 theme = light:Kanagawa Lotus,dark:Kanagawa Dragon
 cursor-style-blink = false
