@@ -6,9 +6,18 @@ services:
     restart: always
     network_mode: synobridge
     shm_size: 1gb
+    # hard cap; trawl reads it and recycles the browser at 85%
+    mem_limit: 1g
     environment:
       SESSION_CACHE_DRIVER: memory   # no Redis container, saves RAM
-      BROWSER_POOL_SIZE: 1           # one warm browser, ~500MB
+      BROWSER_POOL_SIZE: 1
+      # Firefox sleeps after 5 idle minutes so its ~500MB isn't pushing the NAS into swap;
+      # the next Prowlarr solve pays a cold start
+      BROWSER_IDLE_TIMEOUT_MS: 300000
+      # upstream's small-container tuning
+      BROWSER_HARDWARE_CONCURRENCY: 4
+      BROWSER_BLOCK_ADS: "false"
+      BROWSER_SESSION_MAX_ENTRIES: 1
       METRICS_DASHBOARD_ENABLED: "true"
     volumes:
       - /volume1/docker/trawl/metrics:/data/metrics
