@@ -1,0 +1,12 @@
+services:
+  glance:
+    container_name: glance
+    image: glanceapp/glance
+    restart: always
+    network_mode: synobridge
+    env_file: .env
+    volumes:
+      - /volume1/docker/glance:/app/config
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 8383:8080
