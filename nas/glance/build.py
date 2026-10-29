@@ -1,7 +1,7 @@
 # Regenerates glance.yml from the widget READMEs in widgets/ (vendored from
 # github.com/glanceapp/community-widgets, CC0): python3 build.py
 # Prints the env vars the result needs; keep .env.example in sync with them.
-import re, sys, textwrap
+import re, textwrap
 from pathlib import Path
 
 here = Path(__file__).parent
