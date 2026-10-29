@@ -1,0 +1,19 @@
+services:
+  trawl:
+    container_name: trawl
+    # baseline build: Synology's older kernel (and CPUs without AVX2) can't run :latest
+    image: ghcr.io/germondai/trawl:baseline
+    restart: always
+    network_mode: synobridge
+    shm_size: 1gb
+    environment:
+      SESSION_CACHE_DRIVER: memory   # no Redis container, saves RAM
+      BROWSER_POOL_SIZE: 1           # one warm browser, ~500MB
+      METRICS_DASHBOARD_ENABLED: "true"
+    volumes:
+      - /volume1/docker/trawl/metrics:/data/metrics
+    ports:
+      - 8191:8191
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:8191/health"]
+      interval: 30s
