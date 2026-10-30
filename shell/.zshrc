@@ -163,6 +163,8 @@ upa() {
 source ~/.orbstack/shell/init.zsh 2>/dev/null || true
 (( $+commands[fzf] )) && source <(fzf --zsh)
 (( $+commands[fx] )) && source <(fx --comp zsh)
+# keep tool dirs out of zoxide (and the sesh picker); $HOME is zoxide's default
+export _ZO_EXCLUDE_DIRS="$HOME:$HOME/.local:$HOME/.local/*:$HOME/.tmux:$HOME/.tmux/*:$HOME/.oh-my-zsh:$HOME/.oh-my-zsh/*:$HOME/go/bin"
 (( $+commands[zoxide] )) && eval "$(zoxide init zsh)"
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
