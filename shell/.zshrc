@@ -89,6 +89,18 @@ dlog() { docker logs -f "$1" }
 
 # Tmux
 t() { tmux new-session -As "${1:-main}" }
+# feat [branch]: switch to the branch's worktree (picker if none given, new
+# branch if unknown), name the tmux window after it, then open nvim there
+feat() {
+  local from=$PWD
+  # the picker exits 0 on Esc too, so an unchanged directory means cancelled
+  if [[ -z $1 ]]; then wt switch && [[ $PWD != "$from" ]] || return
+  elif [[ -n $(git for-each-ref --format=x "refs/heads/$1" "refs/remotes/*/$1") ]]; then wt switch "$1" || return
+  else wt switch -c "$1" || return
+  fi
+  [[ -n $TMUX ]] && tmux rename-window -t "$TMUX_PANE" "$(git branch --show-current)"
+  nvim
+}
 
 # Utils
 mkcd() { mkdir -p "$1" && cd "$1" }
@@ -168,3 +180,5 @@ export _ZO_EXCLUDE_DIRS="$HOME:$HOME/.local:$HOME/.local/*:$HOME/.tmux:$HOME/.tm
 (( $+commands[zoxide] )) && eval "$(zoxide init zsh)"
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
