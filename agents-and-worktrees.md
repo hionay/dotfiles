@@ -34,9 +34,28 @@ Prefix here is `C-a`.
 5. Look at the status bar, or just press `prefix a` whenever you have a moment. It cycles through blocked windows first, across all sessions, then done ones. When nothing needs you it says `No agent needs you`.
 6. `prefix w` gives the whole picture: each window carries its icon, and each session line shows the icons of all its windows.
 
-When a feature is merged, remove its worktree with `wt remove` (see `wt --help`; worktrunk also has `wt merge`).
-
 From a shell you can do the same thing without the key: `feat my-branch`.
+
+---
+
+## Finishing a feature
+
+Once the PR is merged, in that feature's window:
+
+```sh
+wt remove      # deletes the worktree and the merged branch, cds back to the main worktree
+git pull       # update main
+```
+
+Then either `exit` (or `prefix &`) to close the window, or run `feat next-thing` to reuse it. `feat` renames the window.
+
+`wt remove` deletes the branch only when it is merged. It recognizes regular merges, rebases and squash merges, and compares against `origin/main` when that is ahead of your local `main`, so you don't need to pull first.
+
+- **Abandoned or unmerged branch:** `wt remove` keeps the branch and says so. `wt remove -D` deletes it anyway.
+- **Uncommitted changes:** removal refuses. `-f` discards them.
+- **From another window:** `wt remove <branch>`, then close the old window, since its shell now sits in a deleted directory.
+- **Merging locally instead of a PR:** `wt merge` squashes, rebases, fast-forwards `main` and removes the worktree in one step.
+- **What's left:** `wt list` shows every worktree. Merged ones that are safe to delete are dimmed.
 
 ---
 
